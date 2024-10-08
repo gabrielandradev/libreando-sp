@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class RegistrationController extends AbstractController
 {
@@ -24,7 +25,7 @@ class RegistrationController extends AbstractController
     }
 
     #[Route('/registro/estudiantes', name: 'app_registro_estudiantes')]
-    public function registrarEstudiante(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager) {
+    public function registrarEstudiante(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, ValidatorInterface $validator) {
         $usuario = new Usuario();
         $estudiante = new Estudiante();
 
@@ -47,6 +48,16 @@ class RegistrationController extends AbstractController
             $usuario->setRoles(['ROLE_STUDENT']);
 
             $estudiante->setUsuario($usuario);
+
+            $estudianteErrors = $validator->validate($estudiante);
+            $usuarioErrors = $validator->validate($usuario);
+
+            if (count($estudianteErrors) > 0 || count($usuarioeErrors) > 0) {
+                return $this->render('author/registro_estudiante.html.twig', [
+                    'form' => $form,
+                    'errors' => $errors
+                ]);
+            }
 
             $entityManager->persist($usuario);
             $entityManager->persist($estudiante);
@@ -84,6 +95,16 @@ class RegistrationController extends AbstractController
             $usuario->setRoles(['ROLE_TEACHER']);
 
             $profesor->setUsuario($usuario);
+
+            $profesorErrors = $validator->validate($estudiante);
+            $usuarioErrors = $validator->validate($usuario);
+
+            if (count($profesorErrors) > 0 || count($usuarioErrors) > 0) {
+                return $this->render('author/registro_profesor.html.twig', [
+                    'form' => $form,
+                    'errors' => $errors
+                ]);
+            }
 
             $entityManager->persist($usuario);
             $entityManager->persist($profesor);

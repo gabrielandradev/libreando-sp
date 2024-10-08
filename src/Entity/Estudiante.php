@@ -14,6 +14,17 @@ class Estudiante
     private ?int $id = null;
 
     #[ORM\Column(length: 8)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 8,
+        max: 8,
+        minMessage: 'El DNI debe ser de exáctamente {{ limit }} carácteres',
+        maxMessage: 'El DNI debe ser de exáctamente {{ limit }} carácteres',
+    )]
+    #[Assert\Type(
+        type: 'integer',
+        message: 'El DNI solo debe contener números.',
+    )]
     private ?string $dni = null;
 
     #[ORM\Column(length: 255)]
