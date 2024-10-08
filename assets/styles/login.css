@@ -1,0 +1,211 @@
+body {
+    font-family: "DM Sans", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    min-height: 100vh;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    background-color: #F4F5F5;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.side {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.side img {
+    width: auto;
+    height: 80vh;
+}
+
+.main {
+    background-color: #ffffff;
+    box-shadow: -1.5vw 0px 15px rgba(0, 0, 0, 0.15);
+}
+
+.loginbox {
+    max-width: 650px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loginbox h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    padding-bottom: 4vh;
+}
+
+.login-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 40px;
+}
+
+.user-login {
+    width: 100%;
+    position: relative;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: center;
+}
+
+.user-login input {
+    font-size: 1.2rem;
+    padding: 8px 8px;
+    width: 95%;
+    border: 3px solid #000;
+    border-radius: 7px;
+}
+
+.user-login input::placeholder {
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.remember {
+    display: flex;
+    justify-content: left;
+    font-size: 1.2rem;
+    margin-top: -20px;
+    margin-left: 3%;
+}
+
+.remember input[type="checkbox"] {
+    position: relative;
+    top: 0;
+    width: 16px;
+    height: 16px;
+    appearance: none;
+    outline: none;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.remember input[type="checkbox"]::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2.9px solid #000;
+    box-sizing: border-box;
+    transition: .5s;
+}
+
+.remember input:checked[type="checkbox"]::before {
+    border-left: none;
+    border-top: none;
+    width: 8px;
+    transform: rotate(45deg);
+    translate: (0.4vh, -0.4vh);
+    border-color: #7a9edc;
+    transition: 0.5s;
+}
+
+.login-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-btn button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    background-color: #9bb3e8;
+    padding: 2.5% 6%;
+    margin: 50px auto;
+    border-radius: 40px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: 3px solid #000;
+    cursor: pointer;
+}
+
+.login-btn button:hover {
+    background-color: #7a9edc;
+}
+
+.forgot {
+    display: flex;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.signup {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    font-size: 1.2rem;
+}
+
+
+@media (max-width: 1024px) {
+    .main {
+        box-shadow: none;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #ffffff;
+    }
+
+    .loginbox {
+        width: 90%;
+    }
+
+    .loginbox h1 {
+        font-size: 3rem
+    }
+
+    .user-login input {
+        font-size: 1.5rem;
+        border: 3px solid black;
+    }
+
+    .user-login input::placeholder {
+        font-size: 1.5rem;
+    }
+
+    .remember {
+        font-size: 1rem;
+    }
+
+    .login-btn button {
+        font-size: 1.5rem;
+        font-weight: bold;
+        border: 2px solid #000;
+    }
+
+    .forgot {
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+
+    .signup {
+        font-size: 1rem;
+    }
+
+    .side {
+        display: none;
+    }
+}

@@ -1,0 +1,61 @@
+{% extends 'base_no_navbar.html.twig' %}
+
+{% block title %}Log in!
+{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('styles/login.css') }}">
+{% endblock %}
+
+{% block body %}
+<link rel="stylesheet" href="{{ asset('styles/login.css') }}">
+	<div class="container">
+		<section class="side">
+			<div class="childrens">
+				<img src="{{ asset('images/login/niños_pila.png') }}" alt="Niños en columna">
+			</div>
+		</section>
+
+		<section class="main">
+			<div class="loginbox">
+				<form action="{{ path('app_login') }}" method="post">
+					{% if error %}
+						<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+					{% endif %}
+
+					<div class="login-header">
+						<h1>¡Bienvenido de nuevo!</h1>
+					</div>
+
+					<div class="user-login">
+						<input type="email" value="{{ last_username }}" name="_username" id="username" placeholder="Correo electrónico" class="form-control" autocomplete="email" required autofocus>
+					</div>
+					<div class="user-login">
+						<input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" placeholder="Contraseña" required>
+					</div>
+
+					<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+					<div class="checkbox mb-3">
+						<input type="checkbox" name="_remember_me" id="_remember_me">
+						<label for="_remember_me">Recordarme la próxima vez</label>
+					</div>
+
+					<div class="login-btn">
+						<button class="btn btn-lg btn-primary" type="submit">
+							Iniciar sesión
+						</button>
+					</div>
+
+                    <div class="forgot">            
+                            <a id="forgot_password"
+                                href="#">
+                                ¿Olvidaste tu contraseña?
+                            </a>
+                    </div>
+
+                    <div class="signup">
+                        <p>¿Todavia no tienes cuenta? <a href="#">Regístrate</a></p>
+                    </div>
+				</form>
+			{% endblock %}

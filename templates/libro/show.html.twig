@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Libro{% endblock %}
+
+{% block body %}
+    <h1>Libro</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ libro.id }}</td>
+            </tr>
+            <tr>
+                <th>Titulo</th>
+                <td>{{ libro.titulo }}</td>
+            </tr>
+            <tr>
+                <th>Isbn</th>
+                <td>{{ libro.isbn }}</td>
+            </tr>
+            <tr>
+                <th>Editorial</th>
+                <td>{{ libro.editorial }}</td>
+            </tr>
+            <tr>
+                <th>Numero_edicion</th>
+                <td>{{ libro.numeroEdicion }}</td>
+            </tr>
+            <tr>
+                <th>Lugar_edicion</th>
+                <td>{{ libro.lugarEdicion }}</td>
+            </tr>
+            <tr>
+                <th>Idioma</th>
+                <td>{{ libro.idioma }}</td>
+            </tr>
+            <tr>
+                <th>Notas</th>
+                <td>{{ libro.notas }}</td>
+            </tr>
+            <tr>
+                <th>Numero_paginas</th>
+                <td>{{ libro.numeroPaginas }}</td>
+            </tr>
+            <tr>
+                <th>Fecha_creacion</th>
+                <td>{{ libro.fechaCreacion ? libro.fechaCreacion|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Fecha_edicion</th>
+                <td>{{ libro.fechaEdicion ? libro.fechaEdicion|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Ubicacion_fisica</th>
+                <td>{{ libro.ubicacionFisica }}</td>
+            </tr>
+            <tr>
+                <th>Publicacion_edicion</th>
+                <td>{{ libro.publicacionEdicion ? libro.publicacionEdicion|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_libro_index') }}">back to list</a>
+
+    <a href="{{ path('app_libro_edit', {'id': libro.id}) }}">edit</a>
+
+    {{ include('libro/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Registrarse{% endblock %}
+
+{% block body %}
+    <h1>Registrar estudiante</h1>
+
+    {{ form_errors(form) }}
+
+    {{ form_start(form) }}
+
+    {{ form_rest(form) }}
+
+    <button type="submit">Registrarse</button>
+
+    {{ form_end(form) }}
+{% endblock %}

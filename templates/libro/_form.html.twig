@@ -1,0 +1,11 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+
+    <datalist id="{{ form.autores.vars.datalist_id }}">
+        {% for autor in form.autores.vars.datalist %}
+            <option value="{{ autor.nombre }}"></option>
+        {% endfor %}
+    </datalist>
+
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

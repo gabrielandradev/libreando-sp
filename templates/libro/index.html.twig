@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Libro index{% endblock %}
+
+{% block body %}
+    <h1>Libro index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titulo</th>
+                <th>Isbn</th>
+                <th>Editorial</th>
+                <th>Numero_edicion</th>
+                <th>Lugar_edicion</th>
+                <th>Idioma</th>
+                <th>Notas</th>
+                <th>Numero_paginas</th>
+                <th>Fecha_creacion</th>
+                <th>Fecha_edicion</th>
+                <th>Ubicacion_fisica</th>
+                <th>Publicacion_edicion</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for libro in libros %}
+            <tr>
+                <td>{{ libro.id }}</td>
+                <td>{{ libro.titulo }}</td>
+                <td>{{ libro.isbn }}</td>
+                <td>{{ libro.editorial }}</td>
+                <td>{{ libro.numeroEdicion }}</td>
+                <td>{{ libro.lugarEdicion }}</td>
+                <td>{{ libro.idioma }}</td>
+                <td>{{ libro.notas }}</td>
+                <td>{{ libro.numeroPaginas }}</td>
+                <td>{{ libro.fechaCreacion ? libro.fechaCreacion|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ libro.fechaEdicion ? libro.fechaEdicion|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ libro.ubicacionFisica }}</td>
+                <td>{{ libro.publicacionEdicion ? libro.publicacionEdicion|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_libro_show', {'id': libro.id}) }}">show</a>
+                    <a href="{{ path('app_libro_edit', {'id': libro.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="14">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_libro_new') }}">Create new</a>
+{% endblock %}

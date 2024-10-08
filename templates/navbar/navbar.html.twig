@@ -1,0 +1,70 @@
+<nav>
+	<div class="topnav">
+		<a href="{{url('app_index')}}">
+			<img src="{{asset('images/logo/logo-libreando.png')}}" alt="Logo">
+		</a>
+		<div class="search-container">
+			<form action="#">
+				<div class="search-selector">
+					<select name="items">
+						<option value="todos" selected>Todos</option>
+						<option value="libros">Libros</option>
+						<option value="autores">Autores</option>
+					</select>
+				</div>
+				<input type="text" placeholder="Busca libros, autores, o temas" name="search">
+				<button type="submit">
+					<svg xmlns="http://www.w3.org/2000/svg" height="36px" width="36px" viewbox="0 -960 960 960" fill="#e8eaed">
+						<path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/>
+					</svg>
+				</button>
+			</form>
+		</div>
+
+		{% if not is_granted("IS_AUTHENTICATED_FULLY") %}
+			<div class="user-links">
+				<a class="nav-link" href="{{ path('app_login') }}">Iniciar sesión</a>
+				<a class="nav-link" href="{{ path('app_registro') }}">Registrarse</a>
+			</div>
+		{% endif %}
+
+		<div class="menu-icon {{ is_granted("IS_AUTHENTICATED_FULLY") ? 'menu-icon-active' : '' }}">
+			<button class="menu-toggle">
+				<img src="{{asset('images/icons/user.png')}}" alt="Logo">
+			</button>
+		</div>
+
+
+		{% if is_granted("IS_AUTHENTICATED_FULLY") %}
+			<div class="dropdown-menu">
+				<a class="nav-link" href="#">Mi perfil</a>
+				<a class="nav-link" href="#">Mis préstamos</a>
+				<a class="nav-link" href="#">Mi lista</a>
+				<a class="nav-link" href="#">Configuración</a>
+				<a href="{{path('app_logout')}}" class="nav-link">
+					Cerrar sesión
+				</a>
+			</div>
+		{% endif %}
+
+		{% if not is_granted("IS_AUTHENTICATED_FULLY") %}
+			<div class="dropdown-menu">
+				<a class="nav-link" href="{{ path('app_login') }}">Iniciar sesión</a>
+				<a class="nav-link" href="{{ path('app_registro') }}">Registrarse</a>
+			</div>
+		{% endif %}
+	</div>
+</nav>
+
+{% block javascripts %}
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const menuIcon = document.querySelector('.menu-icon');
+        const dropdownMenu = document.querySelector('.dropdown-menu');
+
+        menuToggle.addEventListener('click', function () {
+            menuIcon.classList.toggle('active');
+            dropdownMenu.classList.toggle('show');
+        });
+    </script>
+{% endblock %}

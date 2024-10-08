@@ -1,0 +1,14 @@
+@font-face {
+  font-family: "DM Sans";
+  font-optical-sizing: auto;
+  src: url('./DM_Sans/DMSans-VariableFont_opsz,wght.ttf');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Playfair Display";
+  font-optical-sizing: auto;
+  src: url('./Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf');
+  font-style: normal;
+}
+
