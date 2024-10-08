@@ -2,10 +2,17 @@
 
 {% block title %}Crear nuevo libro{% endblock %}
 
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('styles/book-form.css') }}">
+{% endblock %}
+
 {% block body %}
     <h1>Crear nuevo libro</h1>
 
-    {{ include('libro/_form.html.twig') }}
+    <div class="container">
+        {{ include('libro/_form.html.twig') }}
+    </div>
 
-    <a href="{{ path('app_libro_index') }}">back to list</a>
+    <a href="{{ path('app_libro_index') }}">Volver</a>
+
 {% endblock %}

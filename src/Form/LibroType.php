@@ -9,6 +9,7 @@ use App\Entity\Libro;
 use App\Repository\AutorRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -26,6 +27,12 @@ class LibroType extends AbstractType
     {
         $builder
             ->add('titulo')
+            ->add('autores', CollectionType::class, [
+                'entry_type' => TextType::class,
+                'entry_options' => [
+                    'datalist' => $this->entityManager->getRepository(Autor::class)->findAll()
+                ],
+            ])
             ->add('isbn')
             ->add('editorial')
             ->add('numero_edicion')
@@ -33,31 +40,24 @@ class LibroType extends AbstractType
             ->add('idioma')
             ->add('notas')
             ->add('numero_paginas')
-            ->add('fecha_creacion', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('fecha_edicion', null, [
-                'widget' => 'single_text',
-            ])
             ->add('ubicacion_fisica')
             ->add('publicacion_edicion', null, [
                 'widget' => 'single_text',
             ])
-            ->add('autores', TextType::class, [
-                'datalist' => $this->entityManager->getRepository(Autor::class)->findAll()
+            ->add('descriptor_primario', TextType::class, [
+                'datalist' => $this->entityManager->getRepository(Descriptor::class)->findAll()
             ])
-            ->add('descriptores_secundarios', EntityType::class, [
-                'class' => Descriptor::class,
-                'choice_label' => 'nombre',
-                'multiple' => true,
-            ])
-            ->add('descriptor_primario', EntityType::class, [
-                'class' => Descriptor::class,
-                'choice_label' => 'nombre',
+            ->add('descriptores_secundarios', CollectionType::class, [
+                'entry_type' => TextType::class,
+                'entry_options' => [
+                    'datalist' => $this->entityManager->getRepository(Descriptor::class)->findAll()
+                ],
             ])
             ->add('numero_cdd', EntityType::class, [
                 'class' => ClasificacionDecimalDewey::class,
-                'choice_label' => 'numero_cdd',
+                'choice_label' => function ($cdd) {
+                    return $cdd->getNumeroCdd() . ' - ' . $cdd->getDescripcion();
+                },
             ])
         ;
     }
