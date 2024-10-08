@@ -53,6 +53,9 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToOne(mappedBy: 'usuario', cascade: ['persist', 'remove'])]
     private ?ListaDeseados $listaDeseados = null;
 
+    #[ORM\OneToOne(mappedBy: 'usuario', cascade: ['persist', 'remove'])]
+    private ?Administrador $administrador = null;
+
     public function __construct()
     {
         $this->prestamos = new ArrayCollection();
@@ -222,6 +225,23 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         $this->listaDeseados = $listaDeseados;
+
+        return $this;
+    }
+
+    public function getAdministrador(): ?Administrador
+    {
+        return $this->administrador;
+    }
+
+    public function setAdministrador(Administrador $administrador): static
+    {
+        // set the owning side of the relation if necessary
+        if ($administrador->getUsuario() !== $this) {
+            $administrador->setUsuario($this);
+        }
+
+        $this->administrador = $administrador;
 
         return $this;
     }
