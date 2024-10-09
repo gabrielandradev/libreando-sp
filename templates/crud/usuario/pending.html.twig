@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administrador{% endblock %}
+
+{% block body %}
+    <h1>Usuarios Pendientes</h1>
+
+    {% for usuario in usuarios %}
+        <p>{{ usuario.id }}</p>
+        <p>{{ usuario.email }}</p>
+        <p>{{ usuario.roles ? usuario.roles|json_encode : ''  }}</p>
+        <form action="{{ path('app_usuario_aceptar', {'id': usuario.id}) }}" method="post">
+            <input type="hidden" name="_token" value="{{ csrf_token('activate' ~ usuario.id) }}">
+            <button>Activar</button>
+        </form>
+        <form action="{{ path('app_usuario_rechazar', {'id': usuario.id}) }}" method="post">
+            <input type="hidden" name="_token" value="{{ csrf_token('reject' ~ usuario.id) }}">
+            <button>Eliminar</button>
+        </form>
+    {% else %}
+        <p>No hay usuarios pendientes</p>
+    {% endfor %}
+
+{% endblock %}

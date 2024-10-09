@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller\Crud;
 
 use App\Entity\Usuario;
 use App\Entity\Administrador;
