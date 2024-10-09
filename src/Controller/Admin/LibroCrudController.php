@@ -12,12 +12,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/libro')]
-final class LibroController extends AbstractController
+final class LibroCrudController extends AbstractController
 {
     #[Route(name: 'app_libro_index', methods: ['GET'])]
     public function index(LibroRepository $libroRepository): Response
     {
-        return $this->render('libro/index.html.twig', [
+        return $this->render('crud/libro/index.html.twig', [
             'libros' => $libroRepository->findAll(),
         ]);
     }
@@ -36,7 +36,7 @@ final class LibroController extends AbstractController
             return $this->redirectToRoute('app_libro_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('libro/new.html.twig', [
+        return $this->render('crud/libro/new.html.twig', [
             'libro' => $libro,
             'form' => $form,
         ]);
@@ -45,7 +45,7 @@ final class LibroController extends AbstractController
     #[Route('/{id}', name: 'app_libro_show', methods: ['GET'])]
     public function show(Libro $libro): Response
     {
-        return $this->render('libro/show.html.twig', [
+        return $this->render('crud/libro/show.html.twig', [
             'libro' => $libro,
         ]);
     }
@@ -62,7 +62,7 @@ final class LibroController extends AbstractController
             return $this->redirectToRoute('app_libro_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('libro/edit.html.twig', [
+        return $this->render('crud/libro/edit.html.twig', [
             'libro' => $libro,
             'form' => $form,
         ]);

@@ -21,8 +21,11 @@ class EstudianteFormType extends AbstractType
             ->add('dni', NumberType::class , [
                 'label'    => 'DNI',
                 'html5'    => true,
-                'required' => false,
-                'scale'    => 8
+                'required' => true,
+                'attr' => [
+                    'min' => 0,
+                    'max' => 99999999
+                ]
             ])
             ->add('nombre')
             ->add('apellido')

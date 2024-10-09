@@ -14,12 +14,12 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 #[Route('/administrador')]
-final class AdministradorController extends AbstractController
+final class AdministradorCrudController extends AbstractController
 {
     #[Route(name: 'app_administrador_index', methods: ['GET'])]
     public function index(AdministradorRepository $administradorRepository): Response
     {
-        return $this->render('administrador/index.html.twig', [
+        return $this->render('crud/administrador/index.html.twig', [
             'administradors' => $administradorRepository->findAll(),
         ]);
     }
@@ -54,7 +54,7 @@ final class AdministradorController extends AbstractController
             return $this->redirectToRoute('app_administrador_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('administrador/new.html.twig', [
+        return $this->render('crud/administrador/new.html.twig', [
             'administrador' => $administrador,
             'form' => $form,
         ]);
@@ -80,7 +80,7 @@ final class AdministradorController extends AbstractController
             return $this->redirectToRoute('app_administrador_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('administrador/edit.html.twig', [
+        return $this->render('crud/administrador/edit.html.twig', [
             'administrador' => $administrador,
             'form' => $form,
         ]);

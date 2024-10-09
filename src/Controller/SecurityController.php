@@ -24,6 +24,16 @@ class SecurityController extends AbstractController
         ]);
     }
 
+    #[Route(path: '/login-success', name: 'app_login_success')]
+    public function postLoginRedirectAction()
+    {
+        if (is_granted('ROLE_ADMIN')) {
+            return $this->redirectToRoute("location_a");
+        }
+
+        return $this->redirectToRoute("app_index");
+    }
+
     #[Route(path: '/logout', name: 'app_logout')]
     public function logout(): void
     {

@@ -23,7 +23,7 @@ class Estudiante
     )]
     #[Assert\Type(
         type: 'integer',
-        message: 'El DNI solo debe contener números.',
+        message: 'El DNI solo debe contener números',
     )]
     private ?string $dni = null;
 

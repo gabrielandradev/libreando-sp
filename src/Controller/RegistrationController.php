@@ -33,6 +33,16 @@ class RegistrationController extends AbstractController
 
         $form->handleRequest($request);
 
+        $estudianteErrors = $validator->validate($estudiante);
+        $usuarioErrors = $validator->validate($usuario);
+
+        if (count($estudianteErrors) > 0 || count($usuarioErrors) > 0) {
+            return $this->render('author/registro_estudiante.html.twig', [
+                'form' => $form,
+                'errors' => $errors
+            ]);
+        }
+
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var string $plainPassword */
             $userEntity = $form->get('usuario');
@@ -48,16 +58,6 @@ class RegistrationController extends AbstractController
             $usuario->setRoles(['ROLE_STUDENT']);
 
             $estudiante->setUsuario($usuario);
-
-            $estudianteErrors = $validator->validate($estudiante);
-            $usuarioErrors = $validator->validate($usuario);
-
-            if (count($estudianteErrors) > 0 || count($usuarioeErrors) > 0) {
-                return $this->render('author/registro_estudiante.html.twig', [
-                    'form' => $form,
-                    'errors' => $errors
-                ]);
-            }
 
             $entityManager->persist($usuario);
             $entityManager->persist($estudiante);
