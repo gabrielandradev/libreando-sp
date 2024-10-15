@@ -14,10 +14,12 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/usuarios')]
 final class UsuarioCrudController extends AbstractController
 {
-    #[Route(name: 'app_usuario_index', methods: ['GET'])]
+    #[Route( name: 'app_usuario_index', methods: ['GET'])]
     public function index(UsuarioRepository $usuarioRepository): Response
     {
-        return $this->render('usuario/index.html.twig', [
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        
+        return $this->render('crud/usuario/index.html.twig', [
             'usuarios' => $usuarioRepository->findAll(),
         ]);
     }
@@ -25,18 +27,24 @@ final class UsuarioCrudController extends AbstractController
     #[Route('/crear/estudiante', name: 'app_estudiante_nuevo', methods: ['GET', 'POST'])]
     public function crearEstudiante(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $this->denyAccessUnlessGranted('IS_NOT_AUTHENTICATED');
+
         return $this->redirectToRoute('app_registro_estudiantes');
     }
 
     #[Route('/crear/profesor', name: 'app_profesor_nuevo', methods: ['GET', 'POST'])]
     public function crearProfesor(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $this->denyAccessUnlessGranted('IS_NOT_AUTHENTICATED');
+
         return $this->redirectToRoute('app_registro_profesores');
     }
 
     #[Route('/{id}', name: 'app_usuario_show', methods: ['GET'])]
     public function show(Usuario $usuario): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        
         return $this->render('usuario/show.html.twig', [
             'usuario' => $usuario,
         ]);
@@ -45,6 +53,8 @@ final class UsuarioCrudController extends AbstractController
     #[Route('/{id}/edit', name: 'app_usuario_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Usuario $usuario, EntityManagerInterface $entityManager): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $form = $this->createForm(RegistrationFormType::class, $usuario);
         $form->handleRequest($request);
 
@@ -54,7 +64,7 @@ final class UsuarioCrudController extends AbstractController
             return $this->redirectToRoute('app_usuario_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('usuario/edit.html.twig', [
+        return $this->render('crud/usuario/edit.html.twig', [
             'usuario' => $usuario,
             'form' => $form,
         ]);
@@ -63,6 +73,8 @@ final class UsuarioCrudController extends AbstractController
     #[Route('/{id}', name: 'app_usuario_delete', methods: ['POST'])]
     public function delete(Request $request, Usuario $usuario, EntityManagerInterface $entityManager): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         if ($this->isCsrfTokenValid('delete'.$usuario->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($usuario);
             $entityManager->flush();
@@ -71,9 +83,13 @@ final class UsuarioCrudController extends AbstractController
         return $this->redirectToRoute('app_usuario_index', [], Response::HTTP_SEE_OTHER);
     }
 
+    //Hay un error que hace que si borro el "/admin" de la fuente, no se puede acceder
+    //"App\Entity\Usuario" object not found by "Symfony\Bridge\Doctrine\ArgumentResolver\EntityValueResolver".
     #[Route('/admin/pendientes', name: 'app_usuarios_pendientes', methods: ['GET'])]
     public function pending(Request $request, EntityManagerInterface $entityManager): Response
     {
+        // $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        
         $usuarios_pendientes = $entityManager->getRepository(Usuario::class)->findInactive();
 
         return $this->render("crud/usuario/pending.html.twig", [

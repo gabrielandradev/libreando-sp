@@ -5,9 +5,9 @@
 {% block body %}
     <h1>Edit Administrador</h1>
 
-    {{ include('administrador/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('crud/administrador/_form.html.twig', {'button_label': 'Update'}) }}
 
     <a href="{{ path('app_administrador_index') }}">back to list</a>
 
-    {{ include('administrador/_delete_form.html.twig') }}
+    {{ include('crud/administrador/_delete_form.html.twig') }}
 {% endblock %}

@@ -63,7 +63,7 @@ final class AdministradorCrudController extends AbstractController
     #[Route('/{id}', name: 'app_administrador_show', methods: ['GET'])]
     public function show(Administrador $administrador): Response
     {
-        return $this->render('administrador/show.html.twig', [
+        return $this->render('crud/administrador/show.html.twig', [
             'administrador' => $administrador,
         ]);
     }
