@@ -37,7 +37,7 @@ class RegistrationController extends AbstractController
         $usuarioErrors = $validator->validate($usuario);
 
         if (count($estudianteErrors) > 0 || count($usuarioErrors) > 0) {
-            return $this->render('author/registro_estudiante.html.twig', [
+            return $this->render('registration/registro_estudiante.html.twig', [
                 'form' => $form,
                 'errors' => $errors
             ]);
@@ -100,7 +100,7 @@ class RegistrationController extends AbstractController
             $usuarioErrors = $validator->validate($usuario);
 
             if (count($profesorErrors) > 0 || count($usuarioErrors) > 0) {
-                return $this->render('author/registro_profesor.html.twig', [
+                return $this->render('registration/registro_profesor.html.twig', [
                     'form' => $form,
                     'errors' => $errors
                 ]);

@@ -53,11 +53,11 @@
 	</p>
 </div></div><div class="books">
 <h2>Todos los libros</h2>
-<div class="books-slider">
-	{# @foreach ($books as $book)
-
-	<a href="{{route('libro', [$book->id])}}"><img src="{{ asset('images/book/portada.png') }}" alt="Portada" class="cover">
-		{{$book->titulo}}</a>
-
-	@endforeach #}
+<div
+	class="books-slider">{# @foreach ($books as $book)
+		
+			<a href="{{route('libro', [$book->id])}}"><img src="{{ asset('images/book/portada.png') }}" alt="Portada" class="cover">
+				{{$book->titulo}}</a>
+		
+			@endforeach #}
 </div></div></div>{% endblock %}

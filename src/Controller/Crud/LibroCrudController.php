@@ -2,7 +2,10 @@
 
 namespace App\Controller\Crud;
 
+use App\Entity\Autor;
 use App\Entity\Libro;
+use App\Entity\CopiaLibro;
+use App\Entity\DisponibilidadCopiaLibro;
 use App\Form\LibroType;
 use App\Repository\LibroRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -26,10 +29,24 @@ final class LibroCrudController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $libro = new Libro();
+
         $form = $this->createForm(LibroType::class, $libro);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $numeroCopias = $form->get('numero_copias')->getData();
+
+            for ($i = 0; $i < $numeroCopias; $i++) { 
+                $copiaLibro = new CopiaLibro();
+
+                $copiaLibro->setLibro($libro);
+
+                $disponibilidadCopias = $form->get('disponibilidad_copias')->getData();
+                $copiaLibro->setDisponibilidad($disponibilidadCopias);
+                
+                $entityManager->persist($copiaLibro);
+            }
+
             $entityManager->persist($libro);
             $entityManager->flush();
 
@@ -38,7 +55,7 @@ final class LibroCrudController extends AbstractController
 
         return $this->render('crud/libro/new.html.twig', [
             'libro' => $libro,
-            'form' => $form,
+            'form' => $form
         ]);
     }
 

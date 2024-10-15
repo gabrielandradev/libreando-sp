@@ -1,18 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Crear nuevo libro{% endblock %}
+{% block title %}Crear nuevo libro
+{% endblock %}
 
 {% block stylesheets %}
 	<link rel="stylesheet" href="{{ asset('styles/book-form.css') }}">
 {% endblock %}
 
 {% block body %}
-    <h1>Crear nuevo libro</h1>
+	<h1>Nuevo libro</h1>
 
-    <div class="container">
-        {{ include('crud/libro/_form.html.twig') }}
-    </div>
-
-    <a href="{{ path('app_libro_index') }}">Volver</a>
+	{{ component('LibroForm')}}
 
 {% endblock %}

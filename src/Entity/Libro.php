@@ -9,6 +9,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: LibroRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Libro
 {
     #[ORM\Id]
@@ -49,13 +50,13 @@ class Libro
     /**
      * @var Collection<int, Autor>
      */
-    #[ORM\ManyToMany(targetEntity: Autor::class, inversedBy: 'libros')]
+    #[ORM\ManyToMany(targetEntity: Autor::class, inversedBy: 'libros', cascade: ['persist'])]
     private Collection $autores;
 
     /**
      * @var Collection<int, Descriptor>
      */
-    #[ORM\ManyToMany(targetEntity: Descriptor::class, inversedBy: 'libros')]
+    #[ORM\ManyToMany(targetEntity: Descriptor::class, inversedBy: 'libros', cascade: ['persist'])]
     private Collection $descriptores_secundarios;
 
     #[ORM\ManyToOne]
@@ -83,6 +84,18 @@ class Libro
         $this->autores = new ArrayCollection();
         $this->descriptores_secundarios = new ArrayCollection();
         $this->copiasLibro = new ArrayCollection();
+    }
+
+    #[ORM\PrePersist]
+    public function setFechaCreacionDefault(): void
+    {
+        $this->fecha_creacion = new \DateTimeImmutable();
+    }
+
+    #[ORM\PreUpdate]
+    public function setFechaEdicionOnUpdate(): void
+    {
+        $this->fecha_edicion = new \DateTimeImmutable();
     }
 
     public function getId(): ?int

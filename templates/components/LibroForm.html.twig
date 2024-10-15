@@ -1,0 +1,101 @@
+<div {{ attributes }}>
+	{{ form_start(form, {'data-action': "live#action:prevent"}) }}
+	{{ form_row(form.titulo) }}
+
+	<div>
+		<div>Autores</div>
+		<div>
+			<table>
+				<thead>
+					<tr>
+						<th>Autor</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for key, autor in form.autores %}
+						<tr>
+							<td>
+								{{ form_widget(autor) }}
+							</td>
+							<td>
+								<button data-action="live#action" data-live-action-param="removeAutor" data-live-index-param="{{ key }}" type="button">Eliminar</button>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+
+			<button data-action="live#action" data-live-action-param="addAutor" type="button">Agregar autor</button>
+		</div>
+	</div>
+
+	{% do form.autores.setRendered %}
+
+	{{ form_row(form.isbn, {
+			label: "ISBN"
+		}) }}
+	{{ form_row(form.editorial) }}
+	{{ form_row(form.numero_edicion, {
+			label: "Número de edición"
+		}) }}
+	{{ form_row(form.publicacion_edicion, {
+			label: "Fecha de edición"
+		}) }}
+	{{ form_row(form.lugar_edicion, {
+			label: "Lugar de edición"
+		}) }}
+	{{ form_row(form.idioma) }}
+	{{ form_row(form.notas) }}
+	{{ form_row(form.numero_paginas, {
+			label: "Número de páginas"
+		} ) }}
+	{{ form_row(form.numero_cdd, {
+			label: "Número Dewey"
+		}) }}
+	{{ form_row(form.ubicacion_fisica, {
+			label: "Ubicación física"
+		}) }}
+	{{ form_row(form.descriptor_primario) }}
+
+	<div>
+		<div>Descriptores secundarios</div>
+		<div>
+			<table>
+				<thead>
+					<tr>
+						<th>Descriptor secundario</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for key, descriptorSecundario in form.descriptores_secundarios %}
+						<tr>
+							<td>
+								{{ form_widget(descriptorSecundario) }}
+							</td>
+							<td>
+								<button data-action="live#action" data-live-action-param="removeDescriptorSecundario" data-live-index-param="{{ key }}" type="button">Eliminar</button>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+
+			{% do form.descriptores_secundarios.setRendered %}
+
+			<button data-action="live#action" data-live-action-param="addDescriptorSecundario" type="button">Agregar descriptor secundario</button>
+		</div>
+	</div>
+
+	{{ form_row(form.numero_copias, {
+		label: 'Número de copias'
+	}) }}
+
+	{{ form_row(form.disponibilidad_copias, {
+		label: 'Préstamo de las copias'
+	}) }}
+
+	<button type="submit">Guardar</button>
+	{{ form_end(form) }}
+</div>
