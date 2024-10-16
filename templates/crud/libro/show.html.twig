@@ -16,6 +16,22 @@
                 <td>{{ libro.titulo }}</td>
             </tr>
             <tr>
+                <th>Autores</th>
+                {% for autor in libro.autores %}
+                    <td>{{ autor.nombre }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Descriptor primario</th>
+                <td>{{ libro.DescriptorPrimario.nombre }}</td>                
+            </tr>
+            <tr>
+                <th>Descriptor Secundario</th>
+                {% for descriptor in libro.getDescriptoresSecundarios() %}
+                    <td>{{ descriptor.nombre }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
                 <th>Isbn</th>
                 <td>{{ libro.isbn }}</td>
             </tr>
@@ -24,40 +40,40 @@
                 <td>{{ libro.editorial }}</td>
             </tr>
             <tr>
-                <th>Numero_edicion</th>
+                <th>Numero edicion</th>
                 <td>{{ libro.numeroEdicion }}</td>
             </tr>
             <tr>
-                <th>Lugar_edicion</th>
+                <th>Lugar de edicion</th>
                 <td>{{ libro.lugarEdicion }}</td>
             </tr>
             <tr>
-                <th>Idioma</th>
+                <th>Idiomas</th>
                 <td>{{ libro.idioma }}</td>
+            </tr>
+            <tr>
+                <th>Numero de paginas</th>
+                <td>{{ libro.numeroPaginas }}</td>
+            </tr>
+            <tr>
+                <th>Fecha de creación</th>
+                <td>{{ libro.fechaCreacion ? libro.fechaCreacion|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Fecha de edición</th>
+                <td>{{ libro.fechaEdicion ? libro.fechaEdicion|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Ubicacion fisica</th>
+                <td>{{ libro.ubicacionFisica }}</td>
+            </tr>
+            <tr>
+                <th>Publicación de la edición</th>
+                <td>{{ libro.publicacionEdicion ? libro.publicacionEdicion|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
                 <th>Notas</th>
                 <td>{{ libro.notas }}</td>
-            </tr>
-            <tr>
-                <th>Numero_paginas</th>
-                <td>{{ libro.numeroPaginas }}</td>
-            </tr>
-            <tr>
-                <th>Fecha_creacion</th>
-                <td>{{ libro.fechaCreacion ? libro.fechaCreacion|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Fecha_edicion</th>
-                <td>{{ libro.fechaEdicion ? libro.fechaEdicion|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Ubicacion_fisica</th>
-                <td>{{ libro.ubicacionFisica }}</td>
-            </tr>
-            <tr>
-                <th>Publicacion_edicion</th>
-                <td>{{ libro.publicacionEdicion ? libro.publicacionEdicion|date('Y-m-d') : '' }}</td>
             </tr>
         </tbody>
     </table>
