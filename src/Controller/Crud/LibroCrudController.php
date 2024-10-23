@@ -42,7 +42,10 @@ final class LibroCrudController extends AbstractController
                 $copiaLibro->setLibro($libro);
 
                 $disponibilidadCopias = $form->get('disponibilidad_copias')->getData();
+                $ubicacionFisica = $form->get('ubicacion_fisica_copias')->getData();
+
                 $copiaLibro->setDisponibilidad($disponibilidadCopias);
+                $copiaLibro->setUbicacionFisica($ubicacionFisica);
                 
                 $entityManager->persist($copiaLibro);
             }
@@ -58,7 +61,7 @@ final class LibroCrudController extends AbstractController
             'form' => $form
         ]);
     }
-
+    
     #[Route('/{id}', name: 'app_libro_show', methods: ['GET'])]
     public function show(Libro $libro): Response
     {
@@ -74,6 +77,22 @@ final class LibroCrudController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $numeroCopias = $form->get('numero_copias')->getData();
+
+            for ($i = 0; $i < $numeroCopias; $i++) { 
+                $copiaLibro = new CopiaLibro();
+
+                $copiaLibro->setLibro($libro);
+
+                $disponibilidadCopias = $form->get('disponibilidad_copias')->getData();
+                $ubicacionFisica = $form->get('ubicacion_fisica_copias')->getData();
+
+                $copiaLibro->setDisponibilidad($disponibilidadCopias);
+                $copiaLibro->setUbicacionFisica($ubicacionFisica);
+                
+                $entityManager->persist($copiaLibro);
+            }
+
             $entityManager->flush();
 
             return $this->redirectToRoute('app_libro_index', [], Response::HTTP_SEE_OTHER);

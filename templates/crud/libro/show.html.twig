@@ -1,86 +1,101 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Libro{% endblock %}
+{% block title %}Libro
+{% endblock %}
 
 {% block body %}
-    <h1>Libro</h1>
+	<h1>Libro</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ libro.id }}</td>
-            </tr>
-            <tr>
-                <th>Titulo</th>
-                <td>{{ libro.titulo }}</td>
-            </tr>
-            <tr>
-                <th>Autores</th>
-                {% for autor in libro.autores %}
-                    <td>{{ autor.nombre }}</td>
-                {% endfor %}
-            </tr>
-            <tr>
-                <th>Descriptor primario</th>
-                <td>{{ libro.DescriptorPrimario.nombre }}</td>                
-            </tr>
-            <tr>
-                <th>Descriptor Secundario</th>
-                {% for descriptor in libro.getDescriptoresSecundarios() %}
-                    <td>{{ descriptor.nombre }}</td>
-                {% endfor %}
-            </tr>
-            <tr>
-                <th>Isbn</th>
-                <td>{{ libro.isbn }}</td>
-            </tr>
-            <tr>
-                <th>Editorial</th>
-                <td>{{ libro.editorial }}</td>
-            </tr>
-            <tr>
-                <th>Numero edicion</th>
-                <td>{{ libro.numeroEdicion }}</td>
-            </tr>
-            <tr>
-                <th>Lugar de edicion</th>
-                <td>{{ libro.lugarEdicion }}</td>
-            </tr>
-            <tr>
-                <th>Idiomas</th>
-                <td>{{ libro.idioma }}</td>
-            </tr>
-            <tr>
-                <th>Numero de paginas</th>
-                <td>{{ libro.numeroPaginas }}</td>
-            </tr>
-            <tr>
-                <th>Fecha de creación</th>
-                <td>{{ libro.fechaCreacion ? libro.fechaCreacion|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Fecha de edición</th>
-                <td>{{ libro.fechaEdicion ? libro.fechaEdicion|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Ubicacion fisica</th>
-                <td>{{ libro.ubicacionFisica }}</td>
-            </tr>
-            <tr>
-                <th>Publicación de la edición</th>
-                <td>{{ libro.publicacionEdicion ? libro.publicacionEdicion|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Notas</th>
-                <td>{{ libro.notas }}</td>
-            </tr>
-        </tbody>
-    </table>
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ libro.id }}</td>
+			</tr>
+			<tr>
+				<th>Titulo</th>
+				<td>{{ libro.titulo }}</td>
+			</tr>
+			<tr>
+				<th>Autores</th>
+				{% for autor in libro.autores %}
+					<td>{{ autor.nombre }}</td>
+				{% endfor %}
+			</tr>
+			<tr>
+				<th>Descriptor primario</th>
+				<td>{{ libro.DescriptorPrimario.nombre }}</td>
+			</tr>
+			<tr>
+				<th>Descriptor Secundario</th>
+				{% for descriptor in libro.getDescriptoresSecundarios() %}
+					<td>{{ descriptor.nombre }}</td>
+				{% endfor %}
+			</tr>
+			<tr>
+				<th>Isbn</th>
+				<td>{{ libro.isbn }}</td>
+			</tr>
+			<tr>
+				<th>Editorial</th>
+				<td>{{ libro.editorial }}</td>
+			</tr>
+			<tr>
+				<th>Numero edicion</th>
+				<td>{{ libro.numeroEdicion }}</td>
+			</tr>
+			<tr>
+				<th>Lugar de edicion</th>
+				<td>{{ libro.lugarEdicion }}</td>
+			</tr>
+			<tr>
+				<th>Idiomas</th>
+				<td>{{ libro.idioma }}</td>
+			</tr>
+			<tr>
+				<th>Numero de paginas</th>
+				<td>{{ libro.numeroPaginas }}</td>
+			</tr>
+			<tr>
+				<th>Fecha de creación</th>
+				<td>{{ libro.fechaCreacion ? libro.fechaCreacion|date('Y-m-d H:i:s') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Fecha de edición</th>
+				<td>{{ libro.fechaEdicion ? libro.fechaEdicion|date('Y-m-d H:i:s') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Publicación de la edición</th>
+				<td>{{ libro.publicacionEdicion ? libro.publicacionEdicion|date('Y-m-d') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Notas</th>
+				<td>{{ libro.notas }}</td>
+			</tr>
+		</tbody>
+	</table>
 
-    <a href="{{ path('app_libro_index') }}">back to list</a>
+	<h2>Copias de este libro ({{ libro.copiasLibro|length }})</h2>
+	<table>
+		<tr>
+			<th>Identificador único</th>
+			<th>Ubicacion fisica</th>
+			<th>Estátus</th>
+		</tr>
+		{% for copia in libro.copiasLibro %}
+			<tr>
+				<td>{{ copia.id }}</td>
+				<td>{{ copia.ubicacionFisica }}</td>
+				<td>{{ copia.disponibilidad.estado }}</td>
+			</tr>
+			{% else %}
 
-    <a href="{{ path('app_libro_edit', {'id': libro.id}) }}">edit</a>
+		{% endfor %}
+	</table>
 
-    {{ include('crud/libro/_delete_form.html.twig') }}
+	<a href="{{ path('app_libro_index') }}">back to list</a>
+
+	<a href="{{ path('app_libro_edit', {'id': libro.id}) }}">edit</a>
+
+	{{ include('crud/libro/_delete_form.html.twig') }}
 {% endblock %}

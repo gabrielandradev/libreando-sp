@@ -19,7 +19,6 @@
                 <th>Numero_paginas</th>
                 <th>Fecha_creacion</th>
                 <th>Fecha_edicion</th>
-                <th>Ubicacion_fisica</th>
                 <th>Publicacion_edicion</th>
                 <th>actions</th>
             </tr>
@@ -38,10 +37,10 @@
                 <td>{{ libro.numeroPaginas }}</td>
                 <td>{{ libro.fechaCreacion ? libro.fechaCreacion|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ libro.fechaEdicion ? libro.fechaEdicion|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ libro.ubicacionFisica }}</td>
                 <td>{{ libro.publicacionEdicion ? libro.publicacionEdicion|date('Y-m-d') : '' }}</td>
                 <td>
                     <a href="{{ path('app_libro_show', {'id': libro.id}) }}">show</a>
+                    <a href="#">Gestionar copias</a>
                     <a href="{{ path('app_libro_edit', {'id': libro.id}) }}">edit</a>
                 </td>
             </tr>

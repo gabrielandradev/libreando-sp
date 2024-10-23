@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Autor index{% endblock %}
+
+{% block body %}
+    <h1>Autor index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for autor in autors %}
+            <tr>
+                <td>{{ autor.id }}</td>
+                <td>{{ autor.nombre }}</td>
+                <td>
+                    <a href="{{ path('app_autor_crud_show', {'id': autor.id}) }}">show</a>
+                    <a href="{{ path('app_autor_crud_edit', {'id': autor.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_autor_crud_new') }}">Create new</a>
+{% endblock %}

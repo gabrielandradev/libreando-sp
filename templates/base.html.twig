@@ -15,10 +15,9 @@
     <body>
         {% include "navbar/navbar.html.twig" %}
 
-        {% if is_granted("ROLE_ADMIN") %}
-            {% include "navbar/admin.html.twig" %}
-        {% endif %}
-
         {% block body %}{% endblock %}
     </body>
+    {% block scripts %}
+        
+    {% endblock %}
 </html>

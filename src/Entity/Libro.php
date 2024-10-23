@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: LibroRepository::class)]
 #[ORM\HasLifecycleCallbacks]
@@ -66,15 +67,12 @@ class Libro
     /**
      * @var Collection<int, CopiaLibro>
      */
-    #[ORM\OneToMany(targetEntity: CopiaLibro::class, mappedBy: 'libro', orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: CopiaLibro::class, mappedBy: 'libro', orphanRemoval: true, cascade: ['persist'])]
     private Collection $copiasLibro;
 
     #[ORM\ManyToOne(inversedBy: 'libros')]
     #[ORM\JoinColumn(nullable: false)]
     private ?ClasificacionDecimalDewey $numero_cdd = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $ubicacion_fisica = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $publicacion_edicion = null;
@@ -103,6 +101,7 @@ class Libro
         return $this->id;
     }
 
+    #[Groups(['searchable'])]
     public function getTitulo(): ?string
     {
         return $this->titulo;
@@ -114,7 +113,7 @@ class Libro
 
         return $this;
     }
-
+    
     public function getIsbn(): ?string
     {
         return $this->isbn;
@@ -226,6 +225,7 @@ class Libro
     /**
      * @return Collection<int, Autor>
      */
+    #[Groups(['searchable'])]
     public function getAutores(): Collection
     {
         return $this->autores;
@@ -321,18 +321,6 @@ class Libro
     public function setNumeroCdd(?ClasificacionDecimalDewey $numero_cdd): static
     {
         $this->numero_cdd = $numero_cdd;
-
-        return $this;
-    }
-
-    public function getUbicacionFisica(): ?string
-    {
-        return $this->ubicacion_fisica;
-    }
-
-    public function setUbicacionFisica(string $ubicacion_fisica): static
-    {
-        $this->ubicacion_fisica = $ubicacion_fisica;
 
         return $this;
     }

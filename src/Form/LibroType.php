@@ -17,18 +17,33 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class LibroType extends AbstractType
 {
+    public function __construct(
+        private UrlGeneratorInterface $router,
+    ) {
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('titulo')
-            ->add('autores', CollectionType::class, [
-                'entry_type' => AutorType::class,
-                'allow_add' => true,
-                'allow_delete' => true,
-                'by_reference' => false
+            ->add('autores', EntityType::class, [
+                'multiple' => true,
+                'autocomplete' => true,
+                'class' => Autor::class,
+                'by_reference' => false,
+                'tom_select_options' => [
+                    'create' => true,
+                    'delimiter' => ';',
+                ],
+                'attr' => [
+                    'data-controller' => 'custom-autocomplete',
+                    'data-custom-autocomplete-url-value' => $this->router->generate('app_autor_crud_new'),
+                ],
+                'choice_label' => 'nombre'
             ])
             ->add('isbn')
             ->add('editorial')
@@ -37,7 +52,6 @@ class LibroType extends AbstractType
             ->add('idioma')
             ->add('notas')
             ->add('numero_paginas')
-            ->add('ubicacion_fisica')
             ->add('publicacion_edicion', DateType::class, [
                 'widget' => 'single_text',
                 'input'  => 'datetime',
@@ -62,13 +76,17 @@ class LibroType extends AbstractType
             ->add('numero_copias', NumberType::class, [
                 'mapped' => false,
                 'html5' => true,
+                'data' => 0
             ])
             ->add('disponibilidad_copias', EntityType::class, [
                 'mapped' => false,
                 'class' => DisponibilidadCopiaLibro::class,
                 'choice_label' => 'estado'
             ])
-        ;
+            ->add('ubicacion_fisica_copias', TextType::class, [
+                'mapped' => false
+            ])
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

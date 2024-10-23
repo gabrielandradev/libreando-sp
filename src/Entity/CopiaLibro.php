@@ -29,6 +29,9 @@ class CopiaLibro
     #[ORM\OneToMany(targetEntity: Prestamo::class, mappedBy: 'copia_libro')]
     private Collection $prestamos;
 
+    #[ORM\Column(length: 255)]
+    private ?string $ubicacion_fisica = null;
+
     public function __construct()
     {
         $this->prestamos = new ArrayCollection();
@@ -89,6 +92,18 @@ class CopiaLibro
                 $prestamo->setCopiaLibro(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUbicacionFisica(): ?string
+    {
+        return $this->ubicacion_fisica;
+    }
+
+    public function setUbicacionFisica(string $ubicacion_fisica): static
+    {
+        $this->ubicacion_fisica = $ubicacion_fisica;
 
         return $this;
     }

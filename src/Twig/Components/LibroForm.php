@@ -28,17 +28,17 @@ final class LibroForm extends AbstractController
         return $this->createForm(LibroType::class, $this->initialFormData);
     }
 
-    #[LiveAction]
-    public function addAutor()
-    {
-        $this->formValues['autores'][] = [];
-    }
+    // #[LiveAction]
+    // public function addAutor()
+    // {
+    //     $this->formValues['autores'][] = [];
+    // }
 
-    #[LiveAction]
-    public function removeAutor(#[LiveArg] int $index)
-    {
-        unset($this->formValues['autores'][$index]);
-    }
+    // #[LiveAction]
+    // public function removeAutor(#[LiveArg] int $index)
+    // {
+    //     unset($this->formValues['autores'][$index]);
+    // }
 
     #[LiveAction]
     public function addDescriptorSecundario()
