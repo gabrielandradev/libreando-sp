@@ -18,7 +18,7 @@ class SearchController extends AbstractController
     {
         $searchQuery = $request->query->get('q') ?? '';
 
-        $hits = $searchService->search($entityManager, Libro::class, $searchQuery); 
+        $hits = $searchService->search($entityManager, Libro::class, $searchQuery);
 
         return $this->render(
             'search/index.html.twig',

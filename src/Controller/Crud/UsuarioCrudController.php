@@ -14,11 +14,11 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/usuarios')]
 final class UsuarioCrudController extends AbstractController
 {
-    #[Route( name: 'app_usuario_index', methods: ['GET'])]
+    #[Route(name: 'app_usuario_index', methods: ['GET'])]
     public function index(UsuarioRepository $usuarioRepository): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
-        
+
         return $this->render('crud/usuario/index.html.twig', [
             'usuarios' => $usuarioRepository->findAll(),
         ]);
@@ -44,7 +44,7 @@ final class UsuarioCrudController extends AbstractController
     public function show(Usuario $usuario): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
-        
+
         return $this->render('usuario/show.html.twig', [
             'usuario' => $usuario,
         ]);
@@ -75,7 +75,7 @@ final class UsuarioCrudController extends AbstractController
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-        if ($this->isCsrfTokenValid('delete'.$usuario->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $usuario->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($usuario);
             $entityManager->flush();
         }
@@ -89,7 +89,7 @@ final class UsuarioCrudController extends AbstractController
     public function pending(Request $request, EntityManagerInterface $entityManager): Response
     {
         // $this->denyAccessUnlessGranted('ROLE_ADMIN');
-        
+
         $usuarios_pendientes = $entityManager->getRepository(Usuario::class)->findInactive();
 
         return $this->render("crud/usuario/pending.html.twig", [
@@ -100,7 +100,7 @@ final class UsuarioCrudController extends AbstractController
     #[Route('/admin/usuario/{id}/aceptar', name: 'app_usuario_aceptar', methods: ['POST'])]
     public function acceptUser(Request $request, Usuario $usuario, EntityManagerInterface $entityManager)
     {
-        if ($this->isCsrfTokenValid('activate'.$usuario->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('activate' . $usuario->getId(), $request->getPayload()->getString('_token'))) {
             $usuario->setEsUsuarioActivo(true);
             $entityManager->flush();
         }
@@ -111,7 +111,7 @@ final class UsuarioCrudController extends AbstractController
     #[Route('/admin/usuario/{id}/rechazar', name: 'app_usuario_rechazar', methods: ['POST'])]
     public function rejectUser(Request $request, Usuario $usuario, EntityManagerInterface $entityManager)
     {
-        if ($this->isCsrfTokenValid('reject'.$usuario->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('reject' . $usuario->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($usuario);
             $entityManager->flush();
         }

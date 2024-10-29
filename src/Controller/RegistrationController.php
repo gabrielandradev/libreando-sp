@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Usuario;
 use App\Entity\Estudiante;
 use App\Entity\Profesor;
-use App\Form\RegistrationFormType;
 use App\Form\EstudianteFormType;
 use App\Form\ProfesorFormType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -25,7 +24,8 @@ class RegistrationController extends AbstractController
     }
 
     #[Route('/registro/estudiantes', name: 'app_registro_estudiantes')]
-    public function registrarEstudiante(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, ValidatorInterface $validator) {
+    public function registrarEstudiante(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, ValidatorInterface $validator)
+    {
         $usuario = new Usuario();
         $estudiante = new Estudiante();
 
@@ -62,7 +62,8 @@ class RegistrationController extends AbstractController
     }
 
     #[Route('/registro/profesores', name: 'app_registro_profesores')]
-    public function registrarProfesor(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager) {
+    public function registrarProfesor(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager)
+    {
         $usuario = new Usuario();
         $profesor = new Profesor();
 

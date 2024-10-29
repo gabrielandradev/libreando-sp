@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New CopiaLibro{% endblock %}
+
+{% block body %}
+    <h1>Create new CopiaLibro</h1>
+
+    {{ include('crud/copia_libro/_form.html.twig') }}
+
+    <a href="{{ path('app_copia_libro_crud_index', {'id': libro.id}) }}">back to list</a>
+{% endblock %}

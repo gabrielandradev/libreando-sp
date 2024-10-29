@@ -40,7 +40,7 @@
                 <td>{{ libro.publicacionEdicion ? libro.publicacionEdicion|date('Y-m-d') : '' }}</td>
                 <td>
                     <a href="{{ path('app_libro_show', {'id': libro.id}) }}">show</a>
-                    <a href="#">Gestionar copias</a>
+                    <a href="{{ path('app_copia_libro_crud_index', {'id': libro.id}) }}">Gestionar copias</a>
                     <a href="{{ path('app_libro_edit', {'id': libro.id}) }}">edit</a>
                 </td>
             </tr>

@@ -8,10 +8,12 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
+use Symfony\Component\Serializer\Normalizer\NormalizableInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 #[ORM\Entity(repositoryClass: LibroRepository::class)]
 #[ORM\HasLifecycleCallbacks]
-class Libro
+class Libro implements NormalizableInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -231,7 +233,7 @@ class Libro
         return $this->autores;
     }
 
-    public function addAutore(Autor $autore): static
+    public function addAutor(Autor $autore): static
     {
         if (!$this->autores->contains($autore)) {
             $this->autores->add($autore);
@@ -240,7 +242,7 @@ class Libro
         return $this;
     }
 
-    public function removeAutore(Autor $autore): static
+    public function removeAutor(Autor $autore): static
     {
         $this->autores->removeElement($autore);
 
@@ -291,7 +293,7 @@ class Libro
         return $this->copiasLibro;
     }
 
-    public function addCopiasLibro(CopiaLibro $copiasLibro): static
+    public function addCopiaLibro(CopiaLibro $copiasLibro): static
     {
         if (!$this->copiasLibro->contains($copiasLibro)) {
             $this->copiasLibro->add($copiasLibro);
@@ -301,7 +303,7 @@ class Libro
         return $this;
     }
 
-    public function removeCopiasLibro(CopiaLibro $copiasLibro): static
+    public function removeCopiaLibro(CopiaLibro $copiasLibro): static
     {
         if ($this->copiasLibro->removeElement($copiasLibro)) {
             // set the owning side to null (unless already changed)
@@ -335,5 +337,16 @@ class Libro
         $this->publicacion_edicion = $publicacion_edicion;
 
         return $this;
+    }
+
+    public function normalize(NormalizerInterface $serializer, ?string $format = null, array $context = []): array
+    {
+        return [
+            'titulo' => $this->getTitulo(),
+            'isbn' => $this->getIsbn(),
+            'autores' => array_unique(array_map(function ($autor) {
+              return $autor->getNombre();
+            }, $this->getAutores()->toArray()))
+        ];
     }
 }

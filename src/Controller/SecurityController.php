@@ -27,8 +27,8 @@ class SecurityController extends AbstractController
     #[Route(path: '/login-success', name: 'app_login_success')]
     public function postLoginRedirectAction()
     {
-        if (is_granted('ROLE_ADMIN')) {
-            return $this->redirectToRoute("location_a");
+        if ($this->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute("app_admin");
         }
 
         return $this->redirectToRoute("app_index");

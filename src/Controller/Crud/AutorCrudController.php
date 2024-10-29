@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Crud;
 
 use App\Entity\Autor;
 use App\Form\AutorType;
@@ -17,12 +17,12 @@ final class AutorCrudController extends AbstractController
     #[Route(name: 'app_autor_crud_index', methods: ['GET'])]
     public function index(AutorRepository $autorRepository): Response
     {
-        return $this->render('autor_crud/index.html.twig', [
+        return $this->render('crud/autor/index.html.twig', [
             'autors' => $autorRepository->findAll(),
         ]);
     }
 
-    #[Route('/new', name: 'app_autor_crud_new', methods: ['GET', 'POST'])]
+    #[Route('/admin/new', name: 'app_autor_crud_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $autor = new Autor();
@@ -33,13 +33,13 @@ final class AutorCrudController extends AbstractController
             $entityManager->persist($autor);
             $entityManager->flush();
 
-                return $this->json([
-                    'id' => $autor->getId(),
-                    'nombre' => $autor->getNombre(),
-                ]);
+            return $this->json([
+                'id' => $autor->getId(),
+                'nombre' => $autor->getNombre(),
+            ]);
         }
 
-        return $this->render('autor_crud/new.html.twig', [
+        return $this->render('crud/autor/new.html.twig', [
             'autor' => $autor,
             'form' => $form,
         ]);
@@ -48,12 +48,12 @@ final class AutorCrudController extends AbstractController
     #[Route('/{id}', name: 'app_autor_crud_show', methods: ['GET'])]
     public function show(Autor $autor): Response
     {
-        return $this->render('autor_crud/show.html.twig', [
+        return $this->render('crud/autor/show.html.twig', [
             'autor' => $autor,
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_autor_crud_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/admin/edit', name: 'app_autor_crud_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Autor $autor, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(AutorType::class, $autor);
@@ -65,16 +65,16 @@ final class AutorCrudController extends AbstractController
             return $this->redirectToRoute('app_autor_crud_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('autor_crud/edit.html.twig', [
+        return $this->render('crud/autor/edit.html.twig', [
             'autor' => $autor,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'app_autor_crud_delete', methods: ['POST'])]
+    #[Route('/admin/{id}', name: 'app_autor_crud_delete', methods: ['POST'])]
     public function delete(Request $request, Autor $autor, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$autor->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $autor->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($autor);
             $entityManager->flush();
         }

@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -37,7 +38,7 @@ class LibroType extends AbstractType
                 'by_reference' => false,
                 'tom_select_options' => [
                     'create' => true,
-                    'delimiter' => ';',
+                    'delimiter' => ';'
                 ],
                 'attr' => [
                     'data-controller' => 'custom-autocomplete',
@@ -61,11 +62,20 @@ class LibroType extends AbstractType
                 'class' => Descriptor::class,
                 'choice_label' => 'nombre'
             ])
-            ->add('descriptores_secundarios', CollectionType::class, [
-                'entry_type' => DescriptorType::class,
-                'allow_add' => true,
-                'allow_delete' => true,
-                'by_reference' => false
+            ->add('descriptores_secundarios', EntityType::class, [
+                'multiple' => true,
+                'autocomplete' => true,
+                'class' => Descriptor::class,
+                'by_reference' => false,
+                'tom_select_options' => [
+                    'create' => true,
+                    'delimiter' => ';'
+                ],
+                'attr' => [
+                    'data-controller' => 'custom-autocomplete',
+                    'data-custom-autocomplete-url-value' => $this->router->generate('app_descriptor_crud_new'),
+                ],
+                'choice_label' => 'nombre'
             ])
             ->add('numero_cdd', EntityType::class, [
                 'class' => ClasificacionDecimalDewey::class,
@@ -73,18 +83,13 @@ class LibroType extends AbstractType
                     return $cdd->getNumeroCdd() . ' - ' . $cdd->getDescripcion();
                 },
             ])
-            ->add('numero_copias', NumberType::class, [
-                'mapped' => false,
-                'html5' => true,
-                'data' => 0
+            ->add('guardar', SubmitType::class, [
+                'attr' => ['class' => 'save'],
             ])
-            ->add('disponibilidad_copias', EntityType::class, [
-                'mapped' => false,
-                'class' => DisponibilidadCopiaLibro::class,
-                'choice_label' => 'estado'
-            ])
-            ->add('ubicacion_fisica_copias', TextType::class, [
-                'mapped' => false
+            ->add('guardarCrearOtro', SubmitType::class, [
+                'attr' => [
+                    'class' => 'save'
+                ],
             ])
             ;
     }

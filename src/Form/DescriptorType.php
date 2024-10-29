@@ -22,6 +22,12 @@ class DescriptorType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Descriptor::class,
+            'csrf_protection' => false,
         ]);
+    }
+
+    public function getBlockPrefix(): string
+    {
+        return '';
     }
 }

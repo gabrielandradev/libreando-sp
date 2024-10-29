@@ -17,7 +17,7 @@
 				</h2>
 				<p>Por
 					{% for autor in libro.autores %}
-						<a href="{{ path('app_search', {q: 'autor:' ~ autor.nombre}) }}">
+						<a href="{{ path('app_search', {q: autor.nombre}) }}">
 							{{ autor.nombre}}
 						</a>
 
@@ -28,6 +28,8 @@
 
 				<p>Tema:
 					{{ libro.descriptorPrimario.nombre }}</p>
+					<p>ISBN:
+					{{ libro.isbn }}</p>
 				<p>Edición:
 					{{ libro.numeroEdicion }}
 					{{ libro.editorial }},

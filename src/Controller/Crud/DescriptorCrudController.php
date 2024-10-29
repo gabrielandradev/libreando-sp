@@ -17,12 +17,12 @@ final class DescriptorCrudController extends AbstractController
     #[Route(name: 'app_descriptor_crud_index', methods: ['GET'])]
     public function index(DescriptorRepository $descriptorRepository): Response
     {
-        return $this->render('descriptor_crud/index.html.twig', [
+        return $this->render('crud/descriptor/index.html.twig', [
             'descriptors' => $descriptorRepository->findAll(),
         ]);
     }
 
-    #[Route('/admin/crear', name: 'app_descriptor_crud_new', methods: ['GET', 'POST'])]
+    #[Route('/admin/new', name: 'app_descriptor_crud_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $descriptor = new Descriptor();
@@ -33,10 +33,13 @@ final class DescriptorCrudController extends AbstractController
             $entityManager->persist($descriptor);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_descriptor_crud_index', [], Response::HTTP_SEE_OTHER);
+            return $this->json([
+                'id' => $descriptor->getId(),
+                'nombre' => $descriptor->getNombre(),
+            ]);
         }
 
-        return $this->render('descriptor_crud/new.html.twig', [
+        return $this->render('crud/descriptor/new.html.twig', [
             'descriptor' => $descriptor,
             'form' => $form,
         ]);
@@ -50,7 +53,7 @@ final class DescriptorCrudController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/admin/edit', name: 'app_descriptor_crud_edit', methods: ['GET', 'POST'])]
+    #[Route('/admin/{id}/edit', name: 'app_descriptor_crud_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Descriptor $descriptor, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(DescriptorType::class, $descriptor);
@@ -62,16 +65,16 @@ final class DescriptorCrudController extends AbstractController
             return $this->redirectToRoute('app_descriptor_crud_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('descriptor_crud/edit.html.twig', [
+        return $this->render('crud/descriptor/edit.html.twig', [
             'descriptor' => $descriptor,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'app_descriptor_crud_delete', methods: ['POST'])]
+    #[Route('/admin/{id}', name: 'app_descriptor_crud_delete', methods: ['POST'])]
     public function delete(Request $request, Descriptor $descriptor, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$descriptor->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $descriptor->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($descriptor);
             $entityManager->flush();
         }

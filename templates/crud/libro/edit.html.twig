@@ -5,9 +5,7 @@
 {% block body %}
     <h1>Edit Libro</h1>
 
-    {{ component('LibroForm', {
-        'initialFormData': libro
-    })}}
+    {{ include('crud/libro/_form.html.twig')}}
 
     <a href="{{ path('app_libro_index') }}">back to list</a>
 

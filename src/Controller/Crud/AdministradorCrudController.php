@@ -89,7 +89,7 @@ final class AdministradorCrudController extends AbstractController
     #[Route('/{id}', name: 'app_administrador_delete', methods: ['POST'])]
     public function delete(Request $request, Administrador $administrador, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$administrador->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $administrador->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($administrador);
             $entityManager->flush();
         }

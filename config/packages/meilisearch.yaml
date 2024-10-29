@@ -7,7 +7,6 @@ meilisearch:
       # See https://github.com/meilisearch/meilisearch-symfony/wiki/configure-searchable-data
       - name: libros
         class: App\Entity\Libro
-        enable_serializer_groups: true
 when@dev:
   meilisearch:
       prefix: app_dev_
