@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "45798b3f7070ee6fd7f12a0914fd5127",
+    "content-hash": "b51ba42010af03665b957b55bb80e52d",
     "packages": [
         {
             "name": "composer/semver",
@@ -1637,16 +1637,16 @@
         },
         {
             "name": "meilisearch/search-bundle",
-            "version": "v0.15.5",
+            "version": "v0.15.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/meilisearch/meilisearch-symfony.git",
-                "reference": "d510d8706d23c6454b6f9e3c14e4a1cef9e9cb6e"
+                "reference": "9b25dfc49a2407ccdb2675cba4d0cf6e6cd8e300"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/meilisearch/meilisearch-symfony/zipball/d510d8706d23c6454b6f9e3c14e4a1cef9e9cb6e",
-                "reference": "d510d8706d23c6454b6f9e3c14e4a1cef9e9cb6e",
+                "url": "https://api.github.com/repos/meilisearch/meilisearch-symfony/zipball/9b25dfc49a2407ccdb2675cba4d0cf6e6cd8e300",
+                "reference": "9b25dfc49a2407ccdb2675cba4d0cf6e6cd8e300",
                 "shasum": ""
             },
             "require": {
@@ -1665,6 +1665,7 @@
             "require-dev": {
                 "doctrine/annotations": "^2.0.0",
                 "doctrine/orm": "^2.12 || ^3.0",
+                "matthiasnoback/symfony-config-test": "^4.3 || ^5.2",
                 "matthiasnoback/symfony-dependency-injection-test": "^4.3 || ^5.0",
                 "nyholm/psr7": "^1.8.1",
                 "php-cs-fixer/shim": "^3.58.1",
@@ -1709,9 +1710,9 @@
             ],
             "support": {
                 "issues": "https://github.com/meilisearch/meilisearch-symfony/issues",
-                "source": "https://github.com/meilisearch/meilisearch-symfony/tree/v0.15.5"
+                "source": "https://github.com/meilisearch/meilisearch-symfony/tree/v0.15.6"
             },
-            "time": "2024-09-06T21:07:12+00:00"
+            "time": "2024-10-24T03:40:51+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -2661,16 +2662,16 @@
         },
         {
             "name": "symfony/asset",
-            "version": "v7.1.1",
+            "version": "v7.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/asset.git",
-                "reference": "8970de4a0cedd34e097c0f5c502a614780b9ca43"
+                "reference": "0dcd51490d7fc9fbf3c8f5aec6df182920fc0426"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/asset/zipball/8970de4a0cedd34e097c0f5c502a614780b9ca43",
-                "reference": "8970de4a0cedd34e097c0f5c502a614780b9ca43",
+                "url": "https://api.github.com/repos/symfony/asset/zipball/0dcd51490d7fc9fbf3c8f5aec6df182920fc0426",
+                "reference": "0dcd51490d7fc9fbf3c8f5aec6df182920fc0426",
                 "shasum": ""
             },
             "require": {
@@ -2710,7 +2711,7 @@
             "description": "Manages URL generation and versioning of web assets such as CSS stylesheets, JavaScript files and image files",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/asset/tree/v7.1.1"
+                "source": "https://github.com/symfony/asset/tree/v7.1.6"
             },
             "funding": [
                 {
@@ -2726,20 +2727,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-05-31T14:57:53+00:00"
+            "time": "2024-10-25T15:11:02+00:00"
         },
         {
             "name": "symfony/asset-mapper",
-            "version": "v7.1.5",
+            "version": "v7.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/asset-mapper.git",
-                "reference": "e3ae56f965f1fe503db1f604756a44d40e6dea16"
+                "reference": "f918f7e4cb2f4c1f29cc43f986473ddb2392a445"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/asset-mapper/zipball/e3ae56f965f1fe503db1f604756a44d40e6dea16",
-                "reference": "e3ae56f965f1fe503db1f604756a44d40e6dea16",
+                "url": "https://api.github.com/repos/symfony/asset-mapper/zipball/f918f7e4cb2f4c1f29cc43f986473ddb2392a445",
+                "reference": "f918f7e4cb2f4c1f29cc43f986473ddb2392a445",
                 "shasum": ""
             },
             "require": {
@@ -2789,7 +2790,7 @@
             "description": "Maps directories of assets & makes them available in a public directory with versioned filenames.",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/asset-mapper/tree/v7.1.5"
+                "source": "https://github.com/symfony/asset-mapper/tree/v7.1.6"
             },
             "funding": [
                 {
@@ -2805,7 +2806,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-09-19T08:57:32+00:00"
+            "time": "2024-09-25T14:20:29+00:00"
         },
         {
             "name": "symfony/cache",
@@ -4362,16 +4363,16 @@
         },
         {
             "name": "symfony/http-client",
-            "version": "v7.1.5",
+            "version": "v7.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-client.git",
-                "reference": "abca35865118edf35a23f2f24978a1784c831cb4"
+                "reference": "90ab2a4992dcf5d1f19a9b8737eba36a7c305fd0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-client/zipball/abca35865118edf35a23f2f24978a1784c831cb4",
-                "reference": "abca35865118edf35a23f2f24978a1784c831cb4",
+                "url": "https://api.github.com/repos/symfony/http-client/zipball/90ab2a4992dcf5d1f19a9b8737eba36a7c305fd0",
+                "reference": "90ab2a4992dcf5d1f19a9b8737eba36a7c305fd0",
                 "shasum": ""
             },
             "require": {
@@ -4436,7 +4437,7 @@
                 "http"
             ],
             "support": {
-                "source": "https://github.com/symfony/http-client/tree/v7.1.5"
+                "source": "https://github.com/symfony/http-client/tree/v7.1.7"
             },
             "funding": [
                 {
@@ -4452,7 +4453,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-09-20T13:35:23+00:00"
+            "time": "2024-11-05T16:45:54+00:00"
         },
         {
             "name": "symfony/http-client-contracts",
