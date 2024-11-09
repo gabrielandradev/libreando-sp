@@ -107,5 +107,4 @@ class CopiaLibro
 
         return $this;
     }
-    
 }

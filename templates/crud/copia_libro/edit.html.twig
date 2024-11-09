@@ -5,7 +5,7 @@
 {% block body %}
     <h1>Edit CopiaLibro</h1>
 
-    {{ include('crud/copia_libro/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('crud/copia_libro/_form.html.twig', {'editing': true}) }}
 
     <a href="{{ path('app_copia_libro_crud_index', {'id': libro.id}) }}">back to list</a>
 

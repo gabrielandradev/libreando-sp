@@ -1,4 +1,16 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn" type="submit">Guardar</button>
+{{ form_row(form.ubicacion_fisica) }}
+{{ form_row(form.disponibilidad) }}
+
+{% if editing is defined and editing %}
+	{% do form.guardar_multiple.setRendered %}
+	{% do form.numero_copias.setRendered %}
+{% else %}
+	{{ form_row(form.guardar_multiple, {'label': 'Guardar múltiples copias'}) }}
+	<p>Guardar
+		{{ form_row(form.numero_copias, { 'label': false } )}}
+		copias adicionales</p>
+{% endif %}
+
+<button class="btn" type="submit">Guardar</button>
 {{ form_end(form) }}

@@ -97,6 +97,17 @@ final class LibroCrudController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $copiaLibro->setLibro($libro);
 
+            $requiereMultiplesCopias = $form->get('guardar_multiple')->getData();
+            if ($requiereMultiplesCopias) {
+                $copiasAGuardar = $form->get('numero_copias')->getData();
+
+                for ($i = 0; $i < $copiasAGuardar; $i++) {
+                    $newCopiaLibro = clone $copiaLibro;
+                    $entityManager->persist($newCopiaLibro);
+                    $entityManager->flush();
+                }
+            }
+
             $entityManager->persist($copiaLibro);
             $entityManager->flush();
 
