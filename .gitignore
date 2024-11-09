@@ -20,6 +20,8 @@
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 
+/meili_data
+
 ###> symfony/asset-mapper ###
 /public/assets/
 /assets/vendor/
