@@ -60,6 +60,18 @@ class LibroType extends AbstractType
             ])
             ->add('descriptor_primario', EntityType::class, [
                 'class' => Descriptor::class,
+                'choice_label' => 'nombre',
+                'autocomplete' => true,
+                'class' => Descriptor::class,
+                'by_reference' => false,
+                'tom_select_options' => [
+                    'create' => true,
+                    'delimiter' => ';'
+                ],
+                'attr' => [
+                    'data-controller' => 'custom-autocomplete',
+                    'data-custom-autocomplete-url-value' => $this->router->generate('app_descriptor_crud_new'),
+                ],
                 'choice_label' => 'nombre'
             ])
             ->add('descriptores_secundarios', EntityType::class, [

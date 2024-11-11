@@ -61,9 +61,16 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToOne(mappedBy: 'usuario', cascade: ['persist', 'remove'])]
     private ?Administrador $administrador = null;
 
+    /**
+     * @var Collection<int, Reserva>
+     */
+    #[ORM\OneToMany(targetEntity: Reserva::class, mappedBy: 'usuario', orphanRemoval: true)]
+    private Collection $reservas;
+
     public function __construct()
     {
         $this->prestamos = new ArrayCollection();
+        $this->reservas = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -247,6 +254,36 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         $this->administrador = $administrador;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reserva>
+     */
+    public function getReservas(): Collection
+    {
+        return $this->reservas;
+    }
+
+    public function addReserva(Reserva $reserva): static
+    {
+        if (!$this->reservas->contains($reserva)) {
+            $this->reservas->add($reserva);
+            $reserva->setUsuario($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReserva(Reserva $reserva): static
+    {
+        if ($this->reservas->removeElement($reserva)) {
+            // set the owning side to null (unless already changed)
+            if ($reserva->getUsuario() === $this) {
+                $reserva->setUsuario(null);
+            }
+        }
 
         return $this;
     }

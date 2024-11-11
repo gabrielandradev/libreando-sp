@@ -79,11 +79,18 @@ class Libro implements NormalizableInterface
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $publicacion_edicion = null;
 
+    /**
+     * @var Collection<int, Reserva>
+     */
+    #[ORM\OneToMany(targetEntity: Reserva::class, mappedBy: 'libro', orphanRemoval: true)]
+    private Collection $reservas;
+
     public function __construct()
     {
         $this->autores = new ArrayCollection();
         $this->descriptores_secundarios = new ArrayCollection();
         $this->copiasLibro = new ArrayCollection();
+        $this->reservas = new ArrayCollection();
     }
 
     #[ORM\PrePersist]
@@ -348,5 +355,35 @@ class Libro implements NormalizableInterface
               return $autor->getNombre();
             }, $this->getAutores()->toArray()))
         ];
+    }
+
+    /**
+     * @return Collection<int, Reserva>
+     */
+    public function getReservas(): Collection
+    {
+        return $this->reservas;
+    }
+
+    public function addReserva(Reserva $reserva): static
+    {
+        if (!$this->reservas->contains($reserva)) {
+            $this->reservas->add($reserva);
+            $reserva->setLibro($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReserva(Reserva $reserva): static
+    {
+        if ($this->reservas->removeElement($reserva)) {
+            // set the owning side to null (unless already changed)
+            if ($reserva->getLibro() === $this) {
+                $reserva->setLibro(null);
+            }
+        }
+
+        return $this;
     }
 }
