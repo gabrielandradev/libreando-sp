@@ -9,6 +9,8 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Usuario</th>
+                <th>Libro</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -16,6 +18,8 @@
         {% for reserva in reservas %}
             <tr>
                 <td>{{ reserva.id }}</td>
+                <td>{{ reserva.usuario.email }}</td>
+                <td>{{ reserva.libro.titulo }}</td>
                 <td>
                     <a href="{{ path('app_reserva_show', {'id': reserva.id}) }}">show</a>
                     <a href="{{ path('app_reserva_edit', {'id': reserva.id}) }}">edit</a>
@@ -28,6 +32,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_reserva_new') }}">Create new</a>
 {% endblock %}

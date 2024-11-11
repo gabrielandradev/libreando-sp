@@ -27,7 +27,7 @@
 				<td>{{ libro.DescriptorPrimario.nombre }}</td>
 			</tr>
 			<tr>
-				<th>Descriptor Secundario</th>
+				<th>Descriptores Secundarios</th>
 				{% for descriptor in libro.getDescriptoresSecundarios() %}
 					<td>{{ descriptor.nombre }}</td>
 				{% endfor %}

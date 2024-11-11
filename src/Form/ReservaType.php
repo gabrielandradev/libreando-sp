@@ -7,6 +7,7 @@ use App\Entity\Reserva;
 use App\Entity\Usuario;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,13 +16,9 @@ class ReservaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('usuario', EntityType::class, [
-                'class' => Usuario::class,
-                'choice_label' => 'id',
-            ])
-            ->add('libro', EntityType::class, [
-                'class' => Libro::class,
-                'choice_label' => 'id',
+            ->add('confirmar', CheckboxType::class, [
+                'mapped' => false,
+                'required' => true
             ])
         ;
     }

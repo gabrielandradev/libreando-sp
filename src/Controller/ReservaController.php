@@ -31,6 +31,9 @@ final class ReservaController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $reserva->setUsuario($this->getUser());
+            $reserva->setLibro($libro);
+
             $entityManager->persist($reserva);
             $entityManager->flush();
 
