@@ -37,7 +37,7 @@ final class ReservaController extends AbstractController
             $entityManager->persist($reserva);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_reserva_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('reserva/new.html.twig', [

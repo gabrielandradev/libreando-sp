@@ -4,20 +4,15 @@ namespace App\Form;
 
 use App\Entity\Autor;
 use App\Entity\ClasificacionDecimalDewey;
-use App\Entity\DisponibilidadCopiaLibro;
 use App\Entity\Descriptor;
 use App\Entity\Libro;
-use App\Repository\AutorRepository;
+use App\Repository\ClasificacionDecimalDeweyRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class LibroType extends AbstractType
@@ -84,6 +79,10 @@ class LibroType extends AbstractType
             ])
             ->add('numero_cdd', EntityType::class, [
                 'class' => ClasificacionDecimalDewey::class,
+                'query_builder' => function (ClasificacionDecimalDeweyRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->orderBy('u.numero_cdd', 'ASC');
+                },
                 'choice_label' => function ($cdd) {
                     return $cdd->getNumeroCdd() . ' - ' . $cdd->getDescripcion();
                 },

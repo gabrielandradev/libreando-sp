@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Reserva index{% endblock %}
+{% block title %}Reservas{% endblock %}
 
 {% block body %}
-    <h1>Reserva index</h1>
+    <h1>Reservas</h1>
 
     <table class="table">
         <thead>
@@ -11,7 +11,7 @@
                 <th>Id</th>
                 <th>Usuario</th>
                 <th>Libro</th>
-                <th>actions</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -21,13 +21,12 @@
                 <td>{{ reserva.usuario.email }}</td>
                 <td>{{ reserva.libro.titulo }}</td>
                 <td>
-                    <a href="{{ path('app_reserva_show', {'id': reserva.id}) }}">show</a>
-                    <a href="{{ path('app_reserva_edit', {'id': reserva.id}) }}">edit</a>
+                    <a href="{{path('app_prestamo_new', {libro_id:reserva.libro.id})}}">Ir a préstamo</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="2">no records found</td>
+                <td colspan="2">No encontramos reservas</td>
             </tr>
         {% endfor %}
         </tbody>

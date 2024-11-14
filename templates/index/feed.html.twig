@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('styles/index.css') }}">
+{% endblock %}
+
+{% block title %}Inicio
+{% endblock %}
+
+
+{% block body %}
+
+	<div class="books">
+		<h2>Nuestro catálogo</h2>
+		<div class="books">
+			<svg class="left-btn" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24">
+				<path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path>
+			</svg>
+			<ul class="books-slider">
+			{% for libro in libros %}
+								<li class="book-container">
+					<a href="{{path('app_libro_show', {id: libro.id})}}" draggable="false"><img src="{{ asset('images/book/portada.png') }}" alt="Portada" class="book-img" draggable="false">{{libro.titulo}}</a>
+				</li>
+			{% else %}
+				
+			{% endfor %}
+
+			</ul>
+			<svg class="right-btn" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24">
+				<path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path>
+			</svg>
+		</div>
+	</div>
+</div>
+<script>
+	const book_slider = document.querySelector(".books-slider");
+const left_btn = document.querySelector(".left-btn");
+const right_btn = document.querySelector(".right-btn");
+
+const firstBookWidth = book_slider.querySelector(".book-container").offsetWidth;
+
+let isDragging = false,
+startX,
+startScrollLeft;
+
+right_btn.addEventListener('click', () => {
+book_slider.scrollLeft += firstBookWidth;
+})
+
+left_btn.addEventListener('click', () => {
+book_slider.scrollLeft += - firstBookWidth;
+})
+
+const dragStart = (e) => {
+isDragging = true;
+book_slider.classList.add("dragging");
+startX = e.pageX;
+startScrollLeft = book_slider.scrollLeft;
+}
+
+const dragging = (e) => {
+if (! isDragging) 
+return;
+
+
+
+book_slider.scrollLeft = startScrollLeft - (e.pageX - startX);
+}
+
+const dragStop = () => {
+isDragging = false;
+book_slider.classList.remove("dragging");
+} book_slider.addEventListener("mousedown", dragStart);
+book_slider.addEventListener("mousemove", dragging);
+document.addEventListener("mouseup", dragStop);
+</script>{% endblock %}

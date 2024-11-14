@@ -1,4 +1,9 @@
 .container {
+    display: flex;
+    flex-direction: column;
+}
+
+.libreando-content {
     display: grid;
     grid-template-columns: 40% 60%;
     align-items: center;
@@ -6,20 +11,18 @@
     background-color: #99b1e5;
 }
 
-.content {
+.libreando-main {
     display: flex;
     flex-direction: column;
-    height: 100%;
-    padding-left: 10%;
-    padding-top: 20%;
+    margin-left: 10%;
 }
 
-.tittle {
+.libreando-title {
     display: flex;
-    flex-direction: column;
+    flex-direction: column;    
 }
 
-.tittle h2 {
+.libreando-title h2{
     font-size: 2rem;
     font-weight: 550;
     width: 80%;
@@ -27,13 +30,13 @@
     margin-bottom: -3%;
 }
 
-.tittle h1 {
+.libreando-title h1{
     font-size: 8rem;
     margin-bottom: 7%;
     line-height: 1.1;
 }
 
-.text {
+.libreando-text {
     display: flex;
     align-items: flex-start;
     font-size: 2.5rem;
@@ -41,39 +44,36 @@
     line-height: 1.25;
 }
 
-.image {
+.libreando-image {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    padding-top: -5%;
 }
 
-.image img {
+.libreando-image img {
     width: 90%;
     height: auto;
 }
 
-.container-bottom {
+.libreando-desc {
     display: grid;
-    grid-template-columns: 60% 40%;
+    grid-template-columns: 55% 45%;
     align-items: center;
     min-height: 100vh;
 }
 
-.image-bottom {
+.desc-image {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
 }
 
-.image-bottom img {
-    width: 70%;
+.desc-image img {
+    width: 75%;
     height: auto;
 }
 
-.text-bottom {
+.desc-text {
     display: flex;
     align-items: center;
     font-size: 2.5rem;
@@ -83,532 +83,418 @@
 }
 
 .books {
+    margin-bottom: 50px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    margin-bottom: 10%;
+    justify-content: center;
+    position: relative;
 }
 
 .books h2 {
-    margin-bottom: 2%;
-    font-size: 3rem;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.books svg {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    fill: #e0e0e0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.books svg:hover {
+    transition: 0.8s;
+    fill: #000000;
+}
+
+.right-btn {
+    right: 5%;
+}
+
+.left-btn {
+    left: 5%;
 }
 
 .books-slider {
+    width: 80%;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: calc((100% / 5));
+    gap: 10px;
+    overflow: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+}
+
+.books-slider :where(.book-container, .book-img) {
     display: flex;
-    flex-direction: row;
-    width: 95vw;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.books-slider a {
-    margin: 10px;
-    text-align: center;
-    color: black;
-    text-decoration: none;
+.books-slider.dragging {
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+}
+
+.books-slider.dragging .book-container {
+    cursor: grab;
+    user-select: none;
+}
+
+.book-container {
+    scroll-snap-align: start;
+    height: 300px;
+    width: 200px;
+    list-style-type: none;
+}
+
+.book-container a {
     font-size: 1.2rem;
+    color: #000000;
+    text-decoration: none;
+    text-align: center;
 }
 
-.books-slider a:hover {
+.book-container a:hover {
     text-decoration: underline;
 }
 
-.cover img {
-    width: 80px;
-    height: auto;
+.book-img {
+    height: 250px;
+    width: auto;
 }
-
 
 /*Laptop*/
 @media (min-width: 900px) and (max-width: 1280px) and (orientation: landscape) {
-    .container {
-        display: grid;
-        grid-template-columns: 40% 60%;
-        align-items: center;
-    }
-
-    .content {
-        justify-content: center;
-        padding-left: 10%;
-        padding-top: 0%;
-    }
-
-    .tittle {
-        display: flex;
-        flex-direction: column;
-        justify-content: normal;
-        align-items: normal;
-        text-align: start;
-
-    }
-
-    .tittle h2 {
-        font-size: 1rem;
-        font-weight: 550;
-        width: 80%;
-        padding-left: 10%;
-        margin-bottom: -3%;
-    }
-
-    .tittle h1 {
-        font-size: 4rem;
-        margin-bottom: 7%;
-        line-height: 1.1;
-    }
-
-    .text {
-        display: flex;
-        justify-content: normal;
-        align-items: normal;
-        font-size: 2.5rem;
-        font-weight: 800;
-        line-height: 1.25;
-        text-align: start;
-    }
-
-    .image {
-        height: 100vh;
-    }
-
-    .image img {
-        width: 80%;
-        height: auto;
-    }
-
-    .books {
-        margin-top: 0;
-    }
-
-    .container-bottom {
-        display: grid;
-        grid-template-columns: 60% 40%;
-        align-items: center;
-        padding-right: 5%;
-    }
-
-    .image-bottom {
-        padding-top: 5%;
-        height: auto;
-    }
-
-    .text-bottom {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    .libreando-title h2{
         font-size: 1.5rem;
-        font-weight: 800;
-        line-height: 1.25;
-        text-align: center;
+        padding-left: 10%;
     }
-
+    
+    .libreando-title h1{
+        font-size: 5rem;
+    }
+    
+    .libreando-text {
+        font-size: 2rem;
+    }
+    
+    .desc-text {
+        font-size: 2rem;
+    }
+    
+    .books h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+    }
+    
+    .book-container a {
+        font-size: 1.2rem;
+    }
 }
-
 
 /*Tablet*/
 /*Vertical*/
 @media (min-width: 481px) and (max-width: 1240px) and (orientation: portrait) {
-    .container {
-        width: 100%;
-        height: auto;
+    .libreando-content {
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+    }
+        
+    .libreando-main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-left: 0;
     }
 
-    .content {
-        padding-left: 0;
+    .libreando-title h2{
+        font-size: 1.5rem;
+    }
+    
+    .libreando-title h1{
+        font-size: 5rem;
+    }
+    
+    .libreando-text {
+        font-size: 2rem;
+    }
+
+    .libreando-image {
+        margin-top: 10%;
+    }
+    
+    .libreando-image img {
+        width: 80%;
         height: auto;
     }
 
-    .tittle {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-    }
-
-    .tittle h2 {
-        font-size: 1.6rem;
-        font-weight: 550;
-        width: 100%;
-        padding-left: 0;
-        margin-bottom: -3%;
-    }
-
-    .tittle h1 {
-        font-size: 6rem;
-        margin-bottom: 7%;
-        line-height: 1.1;
-    }
-
-    .text {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2.5rem;
-        font-weight: 800;
-        line-height: 1.25;
-        text-align: center;
-    }
-
-    .image {
-        padding-top: 10%;
-        height: auto;
-        padding-bottom: 5%;
-    }
-
-    .books {
-        margin-top: 20%;
-    }
-
-    .container-bottom {
-        width: 100%;
-        height: 100vh;
+    .libreando-desc {
         display: flex;
         flex-direction: column-reverse;
-        justify-content: center;
-    }
-
-    .image-bottom {
-        padding-top: 10%;
-        height: auto;
-    }
-
-    .image-bottom img {
-        width: 100%;
-        height: auto;
-    }
-
-    .text-bottom {
-        display: flex;
         align-items: center;
         justify-content: center;
+        min-height: 100vh;
+    }
+    
+    .desc-text {
         font-size: 2.5rem;
-        font-weight: 800;
-        line-height: 1.25;
-        text-align: center;
     }
 
-    .books {
-        margin-bottom: 5%;
+    .desc-image {
+        margin-top: 10%;
     }
 
+    .desc-image img {
+        width: 85%;
+        height: auto;
+    }
+    
+
+    .books svg {
+        width: 80px;
+        height: 80px;
+    }
+        
     .books h2 {
-        font-size: 3.5rem;
-        margin-bottom: 3%;
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    .book-container {
+        height: 250px;
+        width: 150px;
+    }
+    
+    .book-container a {
+        font-size: 1.2rem;
+    }
+    
+    .book-img {
+        height: 200px;
+        width: auto;
     }
 
     .books-slider {
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
+        grid-auto-columns: calc((100% / 3));
+        gap: 15px;
     }
 
-    .books-slider a {
-        margin: 10px;
-        font-size: 1.5rem;
-        max-width: 80%;
+    .right-btn {
+        right: 0%;
     }
-
-    .cover img {
-        max-width: 60%;
+    
+    .left-btn {
+        left: 0%;
     }
-
-
 }
 
 /*Horizontal*/
 @media (min-height: 481px) and (max-height: 899px) and (orientation: landscape) {
-    .container {
-        display: grid;
-        grid-template-columns: 40% 60%;
-        align-items: center;
-    }
-
-    .content {
-        justify-content: center;
+    .libreando-title h2{
+        font-size: 1.2rem;
         padding-left: 10%;
-        padding-top: 0%;
     }
-
-    .tittle {
-        display: flex;
-        flex-direction: column;
-        justify-content: normal;
-        align-items: normal;
-        text-align: start;
-
-    }
-
-    .tittle h2 {
-        font-size: 1rem;
-        font-weight: 550;
-        width: 80%;
-        padding-left: 10%;
-        margin-bottom: -3%;
-    }
-
-    .tittle h1 {
+    
+    .libreando-title h1{
         font-size: 4rem;
-        margin-bottom: 7%;
-        line-height: 1.1;
     }
-
-    .text {
-        display: flex;
-        justify-content: normal;
-        align-items: normal;
+    
+    .libreando-text {
         font-size: 1.5rem;
-        font-weight: 800;
-        line-height: 1.25;
-        text-align: start;
     }
 
-    .image {
-        height: 100vh;
-    }
-
-    .image img {
-        width: 80%;
+    
+    .libreando-image img {
+        width: 85%;
         height: auto;
     }
-
-    .books {
-        margin-top: 0;
-    }
-
-    .container-bottom {
-        display: grid;
-        grid-template-columns: 60% 40%;
-        align-items: center;
-        padding-right: 5%;
-    }
-
-    .image-bottom {
-        padding-top: 5%;
-        height: auto;
-    }
-
-    .text-bottom {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    
+    .desc-text {
         font-size: 1.5rem;
-        font-weight: 800;
-        line-height: 1.25;
-        text-align: center;
+    }
+    
+    .books h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+    
+    .book-container a {
+        font-size: 1.2rem;
     }
 
+    .books-slider {
+        grid-auto-columns: calc((100% / 4));
+    }
+
+    .right-btn {
+        right: 0%;
+    }
+    
+    .left-btn {
+        left: 0%;
+    }
 }
 
 
 /*Celulares*/
 /*Vertical*/
 @media (max-width: 480px) and (orientation: portrait) {
-    .container {
-        width: 100%;
-        height: 100vh;
+    .libreando-content {
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
+        min-height: 100vh;
     }
-
-    .content {
-        padding-left: 0;
-        height: auto;
-    }
-
-    .tittle {
+        
+    .libreando-main {
         display: flex;
+        flex-direction: column;
         align-items: center;
-        justify-content: center;
         text-align: center;
+        margin-left: 0;
     }
 
-    .tittle h2 {
+    .libreando-title h2{
         font-size: 1.2rem;
-        font-weight: 550;
-        width: 100%;
-        padding-left: 0;
-        margin-bottom: 0;
     }
-
-    .tittle h1 {
+    
+    .libreando-title h1{
         font-size: 4rem;
-        margin-bottom: 7%;
-        line-height: 1.1;
     }
-
-    .text {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    
+    .libreando-text {
         font-size: 1.5rem;
-        font-weight: 800;
-        line-height: 1.25;
-        text-align: center;
     }
 
-    .image {
-        padding-top: 10%;
+    .libreando-image {
+        margin-top: 20%;
+    }
+    
+    .libreando-image img {
+        width: 80%;
         height: auto;
     }
 
-    .books {
+    .libreando-desc {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+    }
+    
+    .desc-text {
+        font-size: 1.5rem;
+    }
+
+    .desc-image {
         margin-top: 20%;
     }
 
-    .container-bottom {
-        width: 100%;
-        height: 100vh;
-        display: flex;
-        flex-direction: column-reverse;
-        justify-content: center;
+    .books svg {
+        width: 80px;
+        height: 80px;
     }
-
-    .image-bottom {
-        padding-top: 10%;
-        height: auto;
-    }
-
-    .text-bottom {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-        font-weight: 800;
-        line-height: 1.25;
-        text-align: center;
-    }
-
-    .books {
-        margin-bottom: 5%;
-    }
-
+        
     .books h2 {
         font-size: 2rem;
-        margin-bottom: 1%;
+        margin-bottom: 20px;
+    }
+
+    .book-container {
+        height: 250px;
+        width: 150px;
+    }
+    
+    .book-container a {
+        font-size: 1.2rem;
+    }
+    
+    .book-img {
+        height: 200px;
+        width: auto;
     }
 
     .books-slider {
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
+        grid-auto-columns: calc((100% / 2));
+        gap: 15px;
     }
 
-    .books-slider a {
-        margin: 5px;
-        max-width: 50%;
+    .right-btn {
+        right: 0%;
     }
-
-    .cover img {
-        max-width: 60%;
+    
+    .left-btn {
+        left: 0%;
     }
-
 }
 
 /*Horizontal*/
 @media (max-height: 480px) and (orientation: landscape) {
-    .container {
-        display: grid;
-        grid-template-columns: 45% 55%;
-        align-items: center;
-    }
-
-    .content {
-        padding-left: 10%;
-    }
-
-    .tittle {
-        display: flex;
-        flex-direction: column;
-        justify-content: normal;
-        align-items: normal;
-        text-align: start;
-
-    }
-
-    .tittle h2 {
+    .libreando-title h2{
         font-size: 1rem;
-        font-weight: 550;
-        width: 80%;
-        padding-left: 10%;
-        margin-bottom: -3%;
+        padding-left: 5%;
     }
-
-    .tittle h1 {
-        font-size: 3.3rem;
-        margin-bottom: 7%;
-        line-height: 1.1;
+    
+    .libreando-title h1{
+        font-size: 3rem;
     }
-
-    .text {
-        display: flex;
-        justify-content: normal;
-        align-items: normal;
+    
+    .libreando-text {
         font-size: 1.3rem;
-        font-weight: 800;
-        line-height: 1.25;
-        text-align: start;
     }
-
-    .image {
-        height: 100vh;
-    }
-
-    .image img {
-        width: 90%;
+    
+    .libreando-image img {
+        width: 65%;
         height: auto;
     }
-
-    .books {
-        margin-top: 0;
+    
+    .desc-text {
+        font-size: 1.5rem;
     }
-
-    .container-bottom {
-        display: grid;
-        grid-template-columns: 55% 45%;
-        align-items: center;
-        padding-right: 5%;
-    }
-
-    .image-bottom {
-        padding-top: 5%;
-        height: auto;
-    }
-
-    .text-bottom {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.3rem;
-        font-weight: 800;
-        line-height: 1.25;
-        text-align: center;
-    }
-
-    .books {
-        margin-bottom: 3%;
-    }
-
+    
     .books h2 {
-        font-size: 1.8rem;
-        margin-bottom: 1%;
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    .book-container {
+        height: 250px;
+        width: 150px;
+    }
+    
+    .book-container a {
+        font-size: 1.2rem;
+    }
+
+    .book-img {
+        height: 200px;
+        width: auto;
     }
 
     .books-slider {
-        flex-direction: row;
-        overflow-x: auto;
+        grid-auto-columns: calc((100% / 4));
     }
 
-    .books-slider a {
-        margin: 5px;
-        font-size: 1rem;
+    .right-btn {
+        right: 0%;
     }
-
-    .cover img {
-        width: 50px;
+    
+    .left-btn {
+        left: 0%;
     }
 }

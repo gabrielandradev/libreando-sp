@@ -1,26 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Libro index{% endblock %}
+{% block title %}Libros{% endblock %}
 
 {% block body %}
-    <h1>Libro index</h1>
+    <h1>Libros</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Titulo</th>
-                <th>Isbn</th>
+                <th>Título</th>
+                <th>ISBN</th>
                 <th>Editorial</th>
-                <th>Numero_edicion</th>
-                <th>Lugar_edicion</th>
+                <th>Número de edición</th>
+                <th>Lugar de edición</th>
                 <th>Idioma</th>
                 <th>Notas</th>
-                <th>Numero_paginas</th>
-                <th>Fecha_creacion</th>
-                <th>Fecha_edicion</th>
-                <th>Publicacion_edicion</th>
-                <th>actions</th>
+                <th>Número de páginas</th>
+                <th>Fecha de creación</th>
+                <th>Fecha de edición</th>
+                <th>Fecha de publicación de edición</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -39,14 +39,14 @@
                 <td>{{ libro.fechaEdicion ? libro.fechaEdicion|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ libro.publicacionEdicion ? libro.publicacionEdicion|date('Y-m-d') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_libro_show', {'id': libro.id}) }}">show</a>
+                    <a href="{{ path('app_libro_show', {'id': libro.id}) }}">Mostrar</a>
                     <a href="{{ path('app_copia_libro_crud_index', {'id': libro.id}) }}">Gestionar copias</a>
-                    <a href="{{ path('app_libro_edit', {'id': libro.id}) }}">edit</a>
+                    <a href="{{ path('app_libro_edit', {'id': libro.id}) }}">Editar</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="14">no records found</td>
+                <td colspan="14">No encontramos libros</td>
             </tr>
         {% endfor %}
         </tbody>

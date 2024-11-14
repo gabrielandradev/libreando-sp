@@ -3,7 +3,7 @@
 {% block title %}Usuario index{% endblock %}
 
 {% block body %}
-    <h1>Usuario index</h1>
+    <h1>Usuarios</h1>
 
     <table class="table">
         <thead>
@@ -11,9 +11,8 @@
                 <th>Id</th>
                 <th>Email</th>
                 <th>Roles</th>
-                <th>Password</th>
-                <th>Es_usuario_activo</th>
-                <th>actions</th>
+                <th>Es usuario activo</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -22,21 +21,22 @@
                 <td>{{ usuario.id }}</td>
                 <td>{{ usuario.email }}</td>
                 <td>{{ usuario.roles ? usuario.roles|json_encode : '' }}</td>
-                <td>{{ usuario.password }}</td>
-                <td>{{ usuario.esUsuarioActivo ? 'Yes' : 'No' }}</td>
+                <td>{{ usuario.esUsuarioActivo ? 'Si' : 'No' }}</td>
                 <td>
-                    <a href="{{ path('app_usuario_show', {'id': usuario.id}) }}">show</a>
-                    <a href="{{ path('app_usuario_edit', {'id': usuario.id}) }}">edit</a>
+                {% if app.user.id != usuario.id %}
+                {% if not usuario.esUsuarioActivo %}
+                    {{ include('crud/usuario/_accept_form.html.twig') }}
+                {% endif %}
+                    {{ include('crud/usuario/_delete_form.html.twig') }}
+                {% endif %}
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="6">No encontramos usuarios</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_estudiante_nuevo') }}">Nuevo estudiante</a>
-    <a href="{{ path('app_profesor_nuevo') }}">Nuevo profesor</a>
 {% endblock %}

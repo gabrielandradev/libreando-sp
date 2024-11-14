@@ -83,12 +83,10 @@ final class UsuarioCrudController extends AbstractController
         return $this->redirectToRoute('app_usuario_index', [], Response::HTTP_SEE_OTHER);
     }
 
-    //Hay un error que hace que si borro el "/admin" de la fuente, no se puede acceder
-    //"App\Entity\Usuario" object not found by "Symfony\Bridge\Doctrine\ArgumentResolver\EntityValueResolver".
     #[Route('/admin/pendientes', name: 'app_usuarios_pendientes', methods: ['GET'])]
     public function pending(Request $request, EntityManagerInterface $entityManager): Response
     {
-        // $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $usuarios_pendientes = $entityManager->getRepository(Usuario::class)->findInactive();
 

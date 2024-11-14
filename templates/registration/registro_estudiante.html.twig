@@ -1,17 +1,38 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_no_navbar.html.twig' %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('styles/login.css') }}">
+{% endblock %}
 
 {% block title %}Registrarse{% endblock %}
 
 {% block body %}
-    <h1>Registrar estudiante</h1>
+	<div class="container">
+		<a class="logo" href="{{path('app_index')}}">
+			<img src="{{asset('images/logo/logo-libreando.png')}}" alt="Logo">
+		</a>
+		<section class="side">
+			<div class="childrens">
+				<img src="{{ asset('images/login/niños_pila.png') }}" alt="Niños en columna">
+			</div>
+		</section>
 
-    {{ form_errors(form) }}
+		<section class="main">
+			<div class="loginbox">
+				<div class="login-header">
+					<h1>¡Bienvenido!</h1>
+				</div>
 
-    {{ form_start(form) }}
+				{{ form_errors(form) }}
 
-    {{ form_rest(form) }}
+				{{ form_start(form) }}
 
-    <button type="submit">Registrarse</button>
+				{{ form_rest(form) }}
 
-    {{ form_end(form) }}
+				<button type="submit">Registrarse</button>
+
+				{{ form_end(form) }}
+			</div>
+		</section>
+	</div>
 {% endblock %}

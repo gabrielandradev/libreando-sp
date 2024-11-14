@@ -1,9 +1,33 @@
+nav {
+    display: none;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .container {
     min-height: 100vh;
     width: 100%;
     display: grid;
     grid-template-columns: 40% 60%;
     background-color: #F4F5F5;
+}
+
+.container .logo {
+    position: absolute;
+    left: 30px;
+    top: 10px;
+    max-height: 60px;
+    width: 60px;
+}
+
+.container .logo .img {
+    max-height: 60px;
+    max-width: 60px;
 }
 
 section {
@@ -29,11 +53,15 @@ section {
 }
 
 .loginbox {
-    max-width: 650px;
+    width: 500px;
     padding: 24px;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.loginbox input {
+    display: flex;
 }
 
 .loginbox h1 {
@@ -57,17 +85,48 @@ section {
     justify-content: center;
 }
 
+input[type="checkbox"] {
+    display: inline !important;
+}
+
 .user-login input {
     font-size: 1.2rem;
-    padding: 8px 8px;
+    padding: 8px;
     width: 95%;
     border: 3px solid #000;
     border-radius: 7px;
 }
 
+.user-login select {
+    font-size: 1.2rem;
+    padding: 8px 8px;
+    width: 95%;
+    border: 3px solid #000;
+    border-radius: 7px;
+    text-align: center;
+}
+
 .user-login input::placeholder {
     font-size: 1.2rem;
     text-align: center;
+}
+
+/* .user-input-placeholder {
+    font-size: 1.2rem;
+    text-align: center;
+    color: #cbd5e0;
+} */
+
+select:required:invalid {
+    color: #4a5568;
+}
+
+option[value=""][disabled] {
+    display: none;
+}
+
+option {
+    color: black;
 }
 
 .remember {
@@ -121,9 +180,11 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
+    box-sizing: border-box;
     color: #000;
     background-color: #9bb3e8;
-    padding: 2.5% 6%;
+    width: 225px;
+    height: 60px;
     margin: 50px auto;
     border-radius: 40px;
     font-size: 1.5rem;
@@ -150,7 +211,17 @@ section {
 }
 
 
-@media (max-width: 1024px) {
+/*Laptop*/
+@media (min-width: 900px) and (max-width: 1280px) and (orientation: landscape) {
+    .login-btn button {
+        margin: 30px auto;
+    }
+}
+
+
+/*Tablet*/
+/*Vertical*/
+@media (min-width: 481px) and (max-width: 1240px) and (orientation: portrait) {
     .main {
         box-shadow: none;
     }
@@ -160,6 +231,10 @@ section {
         justify-content: center;
         align-items: center;
         background-color: #ffffff;
+    }
+
+    .container .logo {
+        left: 10px;
     }
 
     .loginbox {
@@ -173,6 +248,7 @@ section {
     .user-login input {
         font-size: 1.5rem;
         border: 3px solid black;
+        padding: 10px;
     }
 
     .user-login input::placeholder {
@@ -180,7 +256,72 @@ section {
     }
 
     .remember {
+        font-size: 1.3rem;
+    }
+
+    .login-btn button {
+        font-size: 1.5rem;
+        font-weight: bold;
+        border: 2px solid #000;
+    }
+
+    .forgot {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+    }
+
+    .signup {
+        font-size: 1.3rem;
+    }
+
+    .side {
+        display: none;
+    }
+}
+
+/*Horizontal*/
+@media (min-height: 481px) and (max-height: 899px) and (orientation: landscape) {}
+
+/*Celulares*/
+/*Vertical*/
+@media (max-width: 480px) and (orientation: portrait) {
+    .main {
+        box-shadow: none;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #ffffff;
+    }
+
+    .container .logo {
+        left: 10px;
+    }
+
+    .loginbox {
+        width: 90%;
+    }
+
+    .loginbox h1 {
+        font-size: 2.5rem
+    }
+
+    .user-login input {
+        width: 80%;
+        font-size: 1.3rem;
+        border: 3px solid black;
+        padding: 5px;
+    }
+
+    .user-login input::placeholder {
+        font-size: 1.3rem;
+    }
+
+    .remember {
         font-size: 1rem;
+        margin-left: 7.5%;
     }
 
     .login-btn button {
@@ -200,5 +341,33 @@ section {
 
     .side {
         display: none;
+    }
+}
+
+/*Horizontal*/
+@media (max-height: 480px) and (orientation: landscape) {
+    .loginbox h1 {
+        font-size: 2rem
+    }
+
+    .user-login input {
+        font-size: 1rem;
+        border: 3px solid black;
+        width: 80%;
+        padding: 5px;
+    }
+
+    .user-login input::placeholder {
+        font-size: 1rem;
+    }
+
+    .remember {
+        font-size: 1.2rem;
+        margin-left: 15%;
+    }
+
+    .login-btn button {
+        height: 45px;
+        margin: 10px auto;
     }
 }

@@ -1,18 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Prestamo index{% endblock %}
+{% block title %}Préstamos{% endblock %}
 
 {% block body %}
-    <h1>Prestamo index</h1>
+    <h1>Préstamos</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Fecha_solicitud</th>
-                <th>Fecha_prestamo</th>
-                <th>Fecha_devolucion</th>
-                <th>actions</th>
+                <th>Fecha de solicitud</th>
+                <th>Fecha de prestamo</th>
+                <th>Fecha de devolución</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -23,17 +23,16 @@
                 <td>{{ prestamo.fechaPrestamo ? prestamo.fechaPrestamo|date('Y-m-d') : '' }}</td>
                 <td>{{ prestamo.fechaDevolucion ? prestamo.fechaDevolucion|date('Y-m-d') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_prestamo_show', {'id': prestamo.id}) }}">show</a>
-                    <a href="{{ path('app_prestamo_edit', {'id': prestamo.id}) }}">edit</a>
+                    <a href="{{ path('app_prestamo_show', {'id': prestamo.id}) }}">Mostrar</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">No encontramos préstamos</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_prestamo_new') }}">Create new</a>
+    <a href="{{ path('app_prestamo_new') }}">Nuevo préstamo</a>
 {% endblock %}

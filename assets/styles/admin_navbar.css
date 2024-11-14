@@ -1,0 +1,200 @@
+.admin-navbar {
+    width: 100%;
+    height: 70px;
+    box-sizing: border-box;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.admin-navbar-tab  {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    padding: 0 30px;
+}
+
+.admin-navbar-title h2 {
+    text-align: center;
+    color: #181143;
+    font-size: 1.4rem;
+    text-decoration: underline #181143;
+    display: none;
+}
+
+
+.admin-navbar-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 200px;
+    height: 50px;
+    border-radius: 30px;
+    background-color: #b9c9ea;
+    color: #181143;
+    font-size: 1.3rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.admin-navbar-btn svg {
+    width: 30px;
+    height: 30px;
+    fill: #181143;
+}
+
+.admin-navbar-btn:hover {
+    background-color: #99b1e5;
+}
+
+.admin-navbar-btn.active {
+    background-color: #99b1e5;
+}
+
+.admin-navbar-btn .up-icon {
+    visibility: hidden;
+}
+
+.admin-navbar-btn.active .up-icon {
+    visibility: visible;
+}
+
+.admin-navbar-btn.active .down-icon {
+    visibility: hidden;
+}
+
+.admin-navbar-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    background-color: #efebeb;
+    top: calc(100%  + 25px);
+    width: 240px;
+    min-height: 100px;
+    border-radius: 20px;
+    margin: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.5s;
+    z-index: 1;
+}
+
+.admin-navbar-menu.active {
+    opacity: 1;
+    visibility: visible;    
+}
+
+.admin-navbar-menu ul {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 10;
+}
+
+.admin-navbar-menu ul li {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    list-style: none;
+    transition: 0.5s;
+    border-radius: 20px;
+}
+
+.admin-navbar-menu ul li a {
+    width: 100%;
+    color: #181143;
+    font-size: 1rem;
+    font-weight: 450;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    gap: 10px;
+}
+
+.admin-navbar-menu ul li:hover {
+    background-color: #bdbdbd;
+}
+
+.admin-navbar-title li:hover {
+    background-color: #efebeb;
+}
+
+.admin-navbar-menu svg {
+    width: 30px;
+    height: 30px;
+    fill: #181143;
+}
+
+.admin-separator {
+    height: 1.5px;
+    background-color: #181143;
+    margin: 0 10%;
+    width: 80%;
+}
+
+#trash-icon .trash-open {
+    visibility: hidden;
+}
+
+#trash-icon:hover .trash-open {
+    transition: 0.8s;
+    fill: #ff0000;
+    visibility: visible;
+}
+
+
+#trash-icon:hover .trash-closed {
+    visibility: hidden;
+}
+
+/*Celulares*/
+/*Vertical*/
+@media (max-width: 480px) and (orientation: portrait) {
+    .admin-navbar p {
+        display: none;
+    }
+
+    .admin-navbar-title h2 {
+        display: block;
+    }
+
+    .admin-navbar-tab  {
+        padding: 0 20px;
+    }
+
+    .admin-navbar-btn {
+        width: 75px;
+    }
+
+    .admin-navbar-menu {
+        top: calc(100%  + 25px);
+        width: 240px;
+        min-height: 100px;
+    }
+
+    #menu-1 {
+        left: 50%;
+    }
+
+    #menu-3 {
+        right: 50%;
+    }
+}
+
+/*Horizontal*/
+@media (max-height: 480px) and (orientation: landscape) {
+
+}

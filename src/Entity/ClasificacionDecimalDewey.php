@@ -27,6 +27,9 @@ class ClasificacionDecimalDewey
     #[ORM\OneToMany(targetEntity: Libro::class, mappedBy: 'numero_cdd')]
     private Collection $libros;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $referencia = null;
+
     public function __construct()
     {
         $this->libros = new ArrayCollection();
@@ -87,6 +90,18 @@ class ClasificacionDecimalDewey
                 $libro->setNumeroCdd(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getReferencia(): ?string
+    {
+        return $this->referencia;
+    }
+
+    public function setReferencia(?string $referencia): static
+    {
+        $this->referencia = $referencia;
 
         return $this;
     }

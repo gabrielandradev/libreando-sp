@@ -16,26 +16,21 @@ class PrestamoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('fecha_solicitud', null, [
-                'widget' => 'single_text',
+            ->add('prestatario', EntityType::class, [
+                'class' => Usuario::class,
+                'choice_label' => 'email',
             ])
-            ->add('fecha_prestamo', null, [
-                'widget' => 'single_text',
+            ->add('copia_libro', EntityType::class, [
+                'class' => CopiaLibro::class,
+                'choice_label' => 'libro.titulo',
             ])
             ->add('fecha_devolucion', null, [
                 'widget' => 'single_text',
             ])
-            ->add('copia_libro', EntityType::class, [
-                'class' => CopiaLibro::class,
-                'choice_label' => 'id',
-            ])
-            ->add('prestatario', EntityType::class, [
-                'class' => Usuario::class,
-                'choice_label' => 'id',
-            ])
+
             ->add('estado_prestamo', EntityType::class, [
                 'class' => EstadoPrestamo::class,
-                'choice_label' => 'id',
+                'choice_label' => 'estado',
             ])
         ;
     }

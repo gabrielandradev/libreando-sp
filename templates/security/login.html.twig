@@ -10,6 +10,9 @@
 {% block body %}
 <link rel="stylesheet" href="{{ asset('styles/login.css') }}">
 	<div class="container">
+			<a class="logo" href="{{path('app_index')}}">
+			<img src="{{asset('images/logo/logo-libreando.png')}}" alt="Logo">
+		</a>
 		<section class="side">
 			<div class="childrens">
 				<img src="{{ asset('images/login/niños_pila.png') }}" alt="Niños en columna">
@@ -47,15 +50,8 @@
 						</button>
 					</div>
 
-                    <div class="forgot">            
-                            <a id="forgot_password"
-                                href="#">
-                                ¿Olvidaste tu contraseña?
-                            </a>
-                    </div>
-
                     <div class="signup">
-                        <p>¿Todavia no tienes cuenta? <a href="#">Regístrate</a></p>
+                        <p>¿Todavia no tienes cuenta? <a href="{{path('app_registro')}}">Regístrate</a></p>
                     </div>
 				</form>
 			{% endblock %}

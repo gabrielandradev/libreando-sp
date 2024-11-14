@@ -1,0 +1,235 @@
+.table-container {
+    width: 100%;
+}
+
+.table-container h1 {
+    color: #181143;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.table {
+    width: 100%;
+    color: #181143;
+    font-size: 1rem;
+    border-collapse: collapse;
+}
+
+
+.table tr {
+    margin: 0;
+    padding: 0;
+}
+
+.table thead tr th {
+    margin: 0;
+    padding: 0;
+}
+
+.table tbody tr td {
+    color: #181143;
+    font-size: 1rem;
+    padding: 5px;
+    border-top: 1px solid #bdbdbd;
+    text-align: center;
+    opacity: 1;
+}
+
+.table tbody tr td a {
+    text-decoration: none;
+    color: #181143;
+}
+
+.table tbody tr td a:hover {
+    text-decoration: underline;
+}
+
+.table-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.table-btn button {
+    width: 150px;
+    height: 50px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content:space-evenly;
+    align-items: center;
+    border-radius: 25px;
+    margin: 5px;
+}
+
+.table-btn svg {
+    width: 30px;
+    height: 30px;
+}
+
+.accept-btn {
+    background-color: #ffffff;
+    border: 3px solid #079C6A;
+    color: #079C6A;
+    fill: #079C6A;
+}
+
+.accept-btn:hover {
+    transition: 0.5s;
+    background-color: #079C6A;
+    color: #ffffff;
+    fill: #ffffff;
+}
+
+.accept-btn .accept-hover {
+    visibility: hidden;
+}
+
+.accept-btn:hover .accept-hover {
+    visibility: visible;
+}
+
+
+.accept-btn:hover .accept-normal {
+    visibility: hidden;
+}
+
+.reject-btn {
+    background-color: #ffffff;
+    border: 3px solid #EA3E40;
+    color: #EA3E40;
+    fill: #EA3E40;
+}
+.reject-btn:hover {
+    transition: 0.5s;
+    background-color: #EA3E40;
+    color: #ffffff;
+    fill: #ffffff;
+}
+
+.reject-btn .reject-hover {
+    visibility: hidden;
+}
+
+.reject-btn:hover .reject-hover {
+    visibility: visible;
+}
+
+
+.reject-btn:hover .reject-normal {
+    visibility: hidden;
+}
+
+.process-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.process-btn button{
+    width: 150px;
+    height: 50px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content:space-evenly;
+    align-items: center;
+    border-radius: 25px;
+    color: #181143;
+    background-color: #ffffff;
+    cursor: pointer;
+    border: 3px solid #181143;
+    margin: 5px;
+}
+
+.process-btn button:hover {
+    transition: 0.5s;
+    background-color: #37315e;
+    color: #ffffff;
+}
+
+.process-btn svg {
+    width: 30px;
+    height: 30px;
+    fill: #181143;
+}
+
+.process-btn button:hover svg {
+    transition: 0.5s;
+    fill: #ffffff;
+}
+
+.process-btn .process-hover {
+    visibility: hidden;
+}
+
+.process-btn:hover .process-hover {
+    transition: 0.8s;
+    visibility: visible;
+}
+
+
+.process-btn:hover .process-normal {
+    visibility: hidden;
+}
+
+
+/*Celulares*/
+/*Vertical*/
+@media (max-width: 480px) and (orientation: portrait) {
+    .table thead {
+        display: none;
+    }
+
+    .table-container {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .table-container h1 {
+        font-size: 1.5rem;
+    }
+
+    .table {
+        display: block;
+        width: 80%;
+    }
+
+    .table tbody, .table tr, .table td {
+        display: block;
+        width: 100%;
+    }
+
+    .table tr {
+        margin-bottom: 20px;
+    }
+
+    .table tbody tr td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+        font-size: 0.9rem;
+    }
+
+    .table td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: #181143;
+        text-align: left;
+    }
+
+    .process-btn button{
+        width: 130px;
+        height: 50px;
+        margin-left: 20%;
+    }
+
+    .table-btn {
+        display: flex;
+        flex-direction: row;
+    }
+}

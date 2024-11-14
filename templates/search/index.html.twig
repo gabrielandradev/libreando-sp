@@ -15,25 +15,10 @@
 				<h2>
 					<a href="{{ path('app_libro_show', { id: libro.id}) }}">{{ libro.titulo }}</a>
 				</h2>
-				<p>Por
-					{% for autor in libro.autores %}
-						<a href="{{ path('app_search', {q: autor.nombre}) }}">
-							{{ autor.nombre}}
-						</a>
-
-						{% if not loop.last %},
-						{% endif %}
-					{% endfor %}
-				</p>
-
-				<p>Tema:
-					{{ libro.descriptorPrimario.nombre }}</p>
-					<p>ISBN:
-					{{ libro.isbn }}</p>
-				<p>Edición:
-					{{ libro.numeroEdicion }}
-					{{ libro.editorial }},
+				<p>
 					{{ libro.publicacionEdicion ? libro.publicacionEdicion|date('Y') : '' }}</p>
+				<p>ISBN:
+					{{ libro.isbn }}</p>
 			</div>
 		{% else %}
 			<h2>No encontramos resultados para tu búsqueda</h2>

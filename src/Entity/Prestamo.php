@@ -7,6 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PrestamoRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Prestamo
 {
     #[ORM\Id]
@@ -34,6 +35,18 @@ class Prestamo
     #[ORM\ManyToOne(inversedBy: 'prestamos')]
     #[ORM\JoinColumn(nullable: false)]
     private ?EstadoPrestamo $estado_prestamo = null;
+
+    #[ORM\PrePersist]
+    public function setFechaSolicitudDefault(): void
+    {
+        $this->fecha_solicitud = new \DateTimeImmutable();
+    }
+
+    #[ORM\PrePersist]
+    public function setFechaPrestamoDefault(): void
+    {
+        $this->fecha_prestamo = new \DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {

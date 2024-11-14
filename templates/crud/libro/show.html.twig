@@ -1,103 +1,113 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Libro
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('styles/book_show.css') }}">
+{% endblock %}
+
+{% block title %}
+	{{libro.titulo}}
 {% endblock %}
 
 {% block body %}
-	<h1>Libro</h1>
+	<div class="container">
+		<div class="book-cover">
+			<div class="cover">
+				<img src="{{ asset('images/book/portada.png') }}" alt="Portada">
+			</div>
 
-	<table class="table">
-		<tbody>
-			<tr>
-				<th>Id</th>
-				<td>{{ libro.id }}</td>
-			</tr>
-			<tr>
-				<th>Titulo</th>
-				<td>{{ libro.titulo }}</td>
-			</tr>
-			<tr>
-				<th>Autores</th>
-				{% for autor in libro.autores %}
-					<td>{{ autor.nombre }}</td>
-				{% endfor %}
-			</tr>
-			<tr>
-				<th>Descriptor primario</th>
-				<td>{{ libro.DescriptorPrimario.nombre }}</td>
-			</tr>
-			<tr>
-				<th>Descriptores Secundarios</th>
-				{% for descriptor in libro.getDescriptoresSecundarios() %}
-					<td>{{ descriptor.nombre }}</td>
-				{% endfor %}
-			</tr>
-			<tr>
-				<th>Isbn</th>
-				<td>{{ libro.isbn }}</td>
-			</tr>
-			<tr>
-				<th>Editorial</th>
-				<td>{{ libro.editorial }}</td>
-			</tr>
-			<tr>
-				<th>Numero edicion</th>
-				<td>{{ libro.numeroEdicion }}</td>
-			</tr>
-			<tr>
-				<th>Lugar de edicion</th>
-				<td>{{ libro.lugarEdicion }}</td>
-			</tr>
-			<tr>
-				<th>Idiomas</th>
-				<td>{{ libro.idioma }}</td>
-			</tr>
-			<tr>
-				<th>Numero de paginas</th>
-				<td>{{ libro.numeroPaginas }}</td>
-			</tr>
-			<tr>
-				<th>Fecha de creación</th>
-				<td>{{ libro.fechaCreacion ? libro.fechaCreacion|date('Y-m-d H:i:s') : '' }}</td>
-			</tr>
-			<tr>
-				<th>Fecha de edición</th>
-				<td>{{ libro.fechaEdicion ? libro.fechaEdicion|date('Y-m-d H:i:s') : '' }}</td>
-			</tr>
-			<tr>
-				<th>Publicación de la edición</th>
-				<td>{{ libro.publicacionEdicion ? libro.publicacionEdicion|date('Y-m-d') : '' }}</td>
-			</tr>
-			<tr>
-				<th>Notas</th>
-				<td>{{ libro.notas }}</td>
-			</tr>
-		</tbody>
-	</table>
+			<div class="add-list-btn">
+				<button>
+					<a href="{{path('app_reserva_new', { id: libro.id })}}">Reservar</a>
+				</button>
+			</div>
+		</div>
 
-	<a href="{{ path('app_reserva_new', {'id': libro.id}) }}">Reservar</a>
+		<div class="book-info">
+			<h1>{{libro.titulo}}</h1>
 
-	<h2>Copias de este libro ({{ libro.copiasLibro|length }})</h2>
-	<table>
-		<tr>
-			<th>Identificador único</th>
-			<th>Ubicacion fisica</th>
-			<th>Estátus</th>
-		</tr>
-		{% for copia in libro.copiasLibro %}
+			<div class="this-edition">
+				<table class="table">
+					<tbody>
+						<tr>
+							<th>Descriptor primario</th>
+							<td>{{ libro.DescriptorPrimario.nombre }}</td>
+						</tr>
+						<tr>
+							<th>Descriptores Secundarios</th>
+							{% for descriptor in libro.getDescriptoresSecundarios() %}
+								<td>{{ descriptor.nombre }}</td>
+							{% endfor %}
+						</tr>
+						<tr>
+							<th>Isbn</th>
+							<td>{{ libro.isbn }}</td>
+						</tr>
+						<tr>
+							<th>Editorial</th>
+							<td>{{ libro.editorial }}</td>
+						</tr>
+						<tr>
+							<th>Numero edicion</th>
+							<td>{{ libro.numeroEdicion }}</td>
+						</tr>
+						<tr>
+							<th>Lugar de edicion</th>
+							<td>{{ libro.lugarEdicion }}</td>
+						</tr>
+						<tr>
+							<th>Idiomas</th>
+							<td>{{ libro.idioma }}</td>
+						</tr>
+						<tr>
+							<th>Numero de paginas</th>
+							<td>{{ libro.numeroPaginas }}</td>
+						</tr>
+						<tr>
+							<th>Fecha de creación</th>
+							<td>{{ libro.fechaCreacion ? libro.fechaCreacion|date('Y-m-d H:i:s') : '' }}</td>
+						</tr>
+						<tr>
+							<th>Fecha de edición</th>
+							<td>{{ libro.fechaEdicion ? libro.fechaEdicion|date('Y-m-d H:i:s') : '' }}</td>
+						</tr>
+						<tr>
+							<th>Publicación de la edición</th>
+							<td>{{ libro.publicacionEdicion ? libro.publicacionEdicion|date('Y-m-d') : '' }}</td>
+						</tr>
+						<tr>
+							<th>Notas</th>
+							<td>{{ libro.notas }}</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+
+		<div class="separator">
+		<h2>Copias de este libro ({{ libro.copiasLibro|length }})</h2>
+		<table>
 			<tr>
-				<td>{{ copia.id }}</td>
-				<td>{{ copia.ubicacionFisica }}</td>
-				<td>{{ copia.disponibilidad.estado }}</td>
+				<th>Identificador único</th>
+				<th>Ubicacion fisica</th>
+				<th>Estátus</th>
 			</tr>
-			{% else %}
+			{% for copia in libro.copiasLibro %}
+				<tr>
+					<td>{{ copia.id }}</td>
+					<td>{{ copia.ubicacionFisica }}</td>
+					<td>{{ copia.disponibilidad.estado }}</td>
+				</tr>
+				{% else %}
 
-		{% endfor %}
-	</table>
+			{% endfor %}
+		</table>
+		</div>
 
-	<a href="{{ path('app_libro_index') }}">back to list</a>
+		{% if is_granted('ROLE_ADMIN') %}
 
-	<a href="{{ path('app_libro_edit', {'id': libro.id}) }}">edit</a>
+			<a href="{{ path('app_libro_edit', {'id': libro.id}) }}">Editar</a>
 
-	{{ include('crud/libro/_delete_form.html.twig') }}
-{% endblock %}
+			{{ include('crud/libro/_delete_form.html.twig') }}
+		{% endif %}
+	{% endblock %}

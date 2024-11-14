@@ -44,7 +44,7 @@ security:
         - { path: ^/registro, roles: PUBLIC_ACCESS }
         - { path: ^/login, roles: PUBLIC_ACCESS }
         - { path: ^/login, roles: PUBLIC_ACCESS }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/reservas, roles: ROLE_USER }
 
 when@test:
     security:
