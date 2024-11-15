@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit CopiaLibro{% endblock %}
+{% block title %}Editar copia de libro{% endblock %}
 
 {% block body %}
-    <h1>Edit CopiaLibro</h1>
+    <h1>Editar copia de "{{ libro.titulo }}"</h1>
 
     {{ include('crud/copia_libro/_form.html.twig', {'editing': true}) }}
 
-    <a href="{{ path('app_copia_libro_crud_index', {'id': libro.id}) }}">back to list</a>
+    <a href="{{ path('app_copia_libro_crud_index', {'id': libro.id}) }}">Volver a la lista</a>
 
     {{ include('crud/copia_libro/_delete_form.html.twig') }}
 {% endblock %}

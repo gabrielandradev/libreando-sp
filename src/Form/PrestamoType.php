@@ -6,6 +6,7 @@ use App\Entity\CopiaLibro;
 use App\Entity\EstadoPrestamo;
 use App\Entity\Prestamo;
 use App\Entity\Usuario;
+use App\Repository\CopiaLibroRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -22,6 +23,10 @@ class PrestamoType extends AbstractType
             ])
             ->add('copia_libro', EntityType::class, [
                 'class' => CopiaLibro::class,
+                'query_builder' => function (CopiaLibroRepository $copiaLibroRepository) {
+                    return $copiaLibroRepository->createQueryBuilder("c")
+                    ->setMaxResults(20);
+                },
                 'choice_label' => 'libro.titulo',
             ])
             ->add('fecha_devolucion', null, [

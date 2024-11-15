@@ -23,7 +23,7 @@ class IndexController extends AbstractController
 
         if ($this->security->isGranted('ROLE_USER')) {
             return $this->render('index/feed.html.twig' , [
-                'libros' => $libroRepository->findAll()
+                'libros' => $libroRepository->findAny(10)
             ]);
         }
 

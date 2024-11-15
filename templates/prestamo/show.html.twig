@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Prestamo{% endblock %}
+{% block title %}Préstamo{% endblock %}
 
 {% block body %}
-    <h1>Prestamo</h1>
+    <h1>Préstamo N° {{ prestamo.id }} (del libro "{{ prestamo.getCopiaLibro().libro.titulo }}")</h1>
 
     <table class="table">
         <tbody>
@@ -12,23 +12,23 @@
                 <td>{{ prestamo.id }}</td>
             </tr>
             <tr>
-                <th>Fecha_solicitud</th>
+                <th>Fecha de solicitud</th>
                 <td>{{ prestamo.fechaSolicitud ? prestamo.fechaSolicitud|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
-                <th>Fecha_prestamo</th>
+                <th>Fecha de préstamo</th>
                 <td>{{ prestamo.fechaPrestamo ? prestamo.fechaPrestamo|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
-                <th>Fecha_devolucion</th>
+                <th>Fecha de devolución</th>
                 <td>{{ prestamo.fechaDevolucion ? prestamo.fechaDevolucion|date('Y-m-d') : '' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_prestamo_index') }}">back to list</a>
+    <a href="{{ path('app_prestamo_index') }}">Volver a la lista</a>
 
-    <a href="{{ path('app_prestamo_edit', {'id': prestamo.id}) }}">edit</a>
+    <a href="{{ path('app_prestamo_edit', {'id': prestamo.id}) }}">Editar</a>
 
     {{ include('prestamo/_delete_form.html.twig') }}
 {% endblock %}

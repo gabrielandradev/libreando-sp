@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}CopiaLibro index
+{% block title %}Administrar copias de libro
 {% endblock %}
 
 {% block body %}
-	<h1>CopiaLibro index</h1>
+	<h1>Administrar copias de "{{ libro.titulo }}"</h1>
 
 	<table class="table">
 		<thead>
 			<tr>
-				<th>actions</th>
+				<th>Acciones</th>
 				<th>Id</th>
-				<th>Ubicacion_fisica</th>
+				<th>Ubicación física</th>
 				<th>Disponibilidad</th>
 			</tr>
 		</thead>
@@ -20,7 +20,7 @@
 				<tr>
 					<td>
                     {{ include('crud/copia_libro/_delete_form.html.twig') }}
-					<a href="{{ path('app_copia_libro_crud_edit', {'id': libro.id, 'copy_id': copia_libro.id}) }}">edit</a>
+					<button><a href="{{ path('app_copia_libro_crud_edit', {'id': libro.id, 'copy_id': copia_libro.id}) }}">Editar</a></button>
 					</td>
 					<td>{{ copia_libro.id }}</td>
 					<td>{{ copia_libro.ubicacionFisica }}</td>
@@ -28,13 +28,13 @@
 				</tr>
 			{% else %}
 				<tr>
-					<td colspan="3">no records found</td>
+					<td colspan="3">No hay copias de este libro</td>
 				</tr>
 			{% endfor %}
 		</tbody>
 	</table>
 
-	<h1>Create new CopiaLibro</h1>
+	<h1>Crear nueva copia</h1>
 
 	{{ include('crud/copia_libro/_form.html.twig') }}
 

@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Prestamo{% endblock %}
+{% block title %}Editar Préstamo{% endblock %}
 
 {% block body %}
-    <h1>Edit Prestamo</h1>
+    <h1>Editar Préstamo</h1>
 
-    {{ include('prestamo/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('prestamo/_form.html.twig', {'button_label': 'Actualizar'}) }}
 
-    <a href="{{ path('app_prestamo_index') }}">back to list</a>
+    <a href="{{ path('app_prestamo_index') }}">Volver a la lista</a>
 
     {{ include('prestamo/_delete_form.html.twig') }}
 {% endblock %}

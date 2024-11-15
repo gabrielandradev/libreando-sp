@@ -21,7 +21,7 @@ final class LibroCrudController extends AbstractController
     public function index(LibroRepository $libroRepository): Response
     {
         return $this->render('crud/libro/index.html.twig', [
-            'libros' => $libroRepository->findAll(),
+            'libros' => $libroRepository->findAny(300),
         ]);
     }
 
