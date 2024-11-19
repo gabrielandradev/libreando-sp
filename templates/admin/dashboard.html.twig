@@ -1,5 +1,77 @@
 {% extends 'admin.html.twig' %}
 
 {% block main %}
-	<h1>hola</h1>
+	<h1>Panel de control</h1>
+	<div class="container-lg p-0">
+		<div class="row">
+			<div class="d-flex col-xxl-3 col-sm-6">
+				<div class="flex-fill card">
+					<div class="py-4 card-body">
+						<div class="d-flex align-items-start">
+							<div class="flex-grow-1">
+								<h5 class="card-title">{{ inactiveUsersCount }}</h5>
+								<p class="card-text">Solicitudes de cuenta pendientes de revisión</p>
+							</div>
+							<a href="{{path('app_usuarios_pendientes')}}" class="btn btn-primary rounded-circle p-1">
+								<span>
+									<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 -960 960 960" width="24px" fill="#f3f3f3"><path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"/></svg>
+								</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="d-flex col-xxl-3 col-sm-6">
+				<div class="flex-fill card">
+					<div class="py-4 card-body">
+						<div class="d-flex align-items-start">
+							<div class="flex-grow-1">
+								<h5 class="card-title">{{ inactiveUsersCount }}</h5>
+								<p class="card-text">Solicitudes de cuenta pendientes de revisión</p>
+							</div>
+							<a href="{{path('app_usuarios_pendientes')}}" class="btn btn-primary rounded-circle p-1">
+								<span>
+									<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 -960 960 960" width="24px" fill="#f3f3f3"><path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"/></svg>
+								</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="d-flex col-xxl-3 col-sm-6">
+				<div class="flex-fill card">
+					<div class="py-4 card-body">
+						<div class="d-flex align-items-start">
+							<div class="flex-grow-1">
+								<h5 class="card-title">{{ inactiveUsersCount }}</h5>
+								<p class="card-text">Solicitudes de cuenta pendientes de revisión</p>
+							</div>
+							<a href="{{path('app_usuarios_pendientes')}}" class="btn btn-primary rounded-circle p-1">
+								<span>
+									<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 -960 960 960" width="24px" fill="#f3f3f3"><path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"/></svg>
+								</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="d-flex col-xxl-3 col-sm-6">
+				<div class="flex-fill card">
+					<div class="py-4 card-body">
+						<div class="d-flex align-items-start">
+							<div class="flex-grow-1">
+								<h5 class="card-title">{{ inactiveUsersCount }}</h5>
+								<p class="card-text">Solicitudes de cuenta pendientes de revisión</p>
+							</div>
+							<a href="{{path('app_usuarios_pendientes')}}" class="btn btn-primary rounded-circle p-1">
+								<span>
+									<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 -960 960 960" width="24px" fill="#f3f3f3"><path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"/></svg>
+								</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}

@@ -29,12 +29,20 @@
 {{ form_row(form.descriptores_secundarios) }}
 
 {{ form_row(form.guardar, {
-			label: "Guardar"
+			label: "Guardar",
+			attr: {
+				class: 'btn btn-primary'
+			}
 	}) }}
+
 {% if libro.id is null %}
 	{{ form_row(form.guardarCrearOtro, {
-			label: "Guardar y crear otro"
+			label: "Guardar y crear otro",
+			attr: {
+				class: 'btn btn-secondary'
+			}
 	}) }}
+
 {% endif %}
 {% do form.guardarCrearOtro.setRendered %}
 {{ form_end(form) }}

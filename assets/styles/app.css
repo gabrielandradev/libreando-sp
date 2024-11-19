@@ -29,9 +29,10 @@
 }
 
 .sidebar-icon {
-    fill: black;
-    height: 30px;
+    fill: #434343;
     width: 30px;
+    height: 30px;
+    margin-right: 1rem;
 }
 
 .btn-toggle-nav a {
@@ -42,6 +43,14 @@
     text-decoration: none;
 }
 
+.sidebar-btn {
+    text-align: left;
+}
+
 .sidebar-btn:hover {
-    background-color: rgb(245, 245, 247);
+    background-color: #eaeaee;
+}
+
+.card {
+    margin-bottom: 1.25rem;
 }

@@ -1,9 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin.html.twig' %}
 
-{% block title %}Administrar copias de libro
+{% block title %}Libros
 {% endblock %}
 
-{% block body %}
+{% block main %}
 	<h1>Administrar copias de "{{ libro.titulo }}"</h1>
 
 	<table class="table">
@@ -20,7 +20,7 @@
 				<tr>
 					<td>
                     {{ include('crud/copia_libro/_delete_form.html.twig') }}
-					<button><a href="{{ path('app_copia_libro_crud_edit', {'id': libro.id, 'copy_id': copia_libro.id}) }}">Editar</a></button>
+					<a class="btn btn-secondary" href="{{ path('app_copia_libro_crud_edit', {'id': libro.id, 'copy_id': copia_libro.id}) }}">Editar</a>
 					</td>
 					<td>{{ copia_libro.id }}</td>
 					<td>{{ copia_libro.ubicacionFisica }}</td>

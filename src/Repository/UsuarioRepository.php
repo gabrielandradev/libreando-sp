@@ -33,17 +33,27 @@ class UsuarioRepository extends ServiceEntityRepository implements PasswordUpgra
         $this->getEntityManager()->flush();
     }
 
-    public function findInactive(): array 
+    public function findInactive(): array
     {
-           return $this->createQueryBuilder('u')
-               ->andWhere('u.es_usuario_activo = :val')
-               ->setParameter('val', 0)
-               ->orderBy('u.id', 'ASC')
-               ->setMaxResults(10)
-               ->getQuery()
-               ->getResult();
-       }
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.es_usuario_activo = :val')
+            ->setParameter('val', 0)
+            ->orderBy('u.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
     }
+
+    public function findInactiveCount(): mixed
+    {
+        return $this->createQueryBuilder('u')
+        ->select('COUNT(u.id)')
+        ->andWhere('u.es_usuario_activo = :val')
+        ->setParameter('val', 0)
+        ->getQuery()
+        ->getSingleScalarResult();
+    }
+}
     //    /**
     //     * @return Usuario[] Returns an array of Usuario objects
     //     */

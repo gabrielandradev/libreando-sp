@@ -1,4 +1,19 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Guardar') }}</button>
+{{ form_row(form.dni) }}
+
+<div class="row gx-2">
+	<div class="col">
+		{{ form_row(form.nombre) }}
+	</div>
+	<div class="col">
+		{{ form_row(form.apellido) }}
+	</div>
+</div>
+
+{{ form_row(form.telefono) }}
+{{ form_row(form.funcion) }}
+{{ form_row(form.usuario.email) }}
+{{ form_row(form.usuario.plainPassword) }}
+
+<button class="btn btn-primary">{{ button_label|default('Guardar') }}</button>
 {{ form_end(form) }}

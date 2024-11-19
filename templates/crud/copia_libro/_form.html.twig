@@ -6,13 +6,20 @@
 	{% do form.guardar_multiple.setRendered %}
 	{% do form.numero_copias.setRendered %}
 {% else %}
-	{{ form_row(form.guardar_multiple, {'label': 'Guardar múltiples copias'}) }}
-	<div style="display: flex; width: 100%;">
-	<p>Guardar
-		{{ form_row(form.numero_copias, { 'label': false } )}}
-		copias adicionales</p>
-		</div>
+	<div id="multiples-copias" data-controller='copialibro'>
+		{{ form_row(form.guardar_multiple, {'label': 'Guardar múltiples copias',
+		'attr': {
+			'data-action': "change->copialibro#toggleElement"
+		}}) }}
+	</div>
+
+	<div id="copias-selector" class="col d-none" data-copialibro-target="toggleElement">
+		<p>Guardar
+			{{ form_row(form.numero_copias, { 'label': false,
+								}) }}
+			copias adicionales</p>
+	</div>
 {% endif %}
 
-<button class="btn" type="submit">Guardar</button>
+<button class="btn btn-primary" type="submit">Guardar</button>
 {{ form_end(form) }}
