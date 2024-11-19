@@ -1,38 +1,69 @@
-{% extends 'base_no_navbar.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block stylesheets %}
-	<link rel="stylesheet" href="{{ asset('styles/login.css') }}">
+{% block title %}Registrarse
 {% endblock %}
 
-{% block title %}Registrarse{% endblock %}
+{% block header %}{% endblock %}
 
 {% block body %}
-	<div class="container">
-		<a class="logo" href="{{path('app_index')}}">
-			<img src="{{asset('images/logo/logo-libreando.png')}}" alt="Logo">
-		</a>
-		<section class="side">
-			<div class="childrens">
-				<img src="{{ asset('images/login/niños_pila.png') }}" alt="Niños en columna">
-			</div>
-		</section>
-
-		<section class="main">
-			<div class="loginbox">
-				<div class="login-header">
-					<h1>¡Bienvenido!</h1>
+	<div class="container-fluid landing-panel">
+		<div class="container-lg align-items-stretch">
+			<div class="row">
+				<div class="col d-none d-lg-block d-md-none">
+					<img src="{{ asset('images/login/niños_pila.png') }}" alt="Niños en columna">
 				</div>
 
-				{{ form_errors(form) }}
+				<div class="col d-flex align-items-center justify-content-center">
+					<div class="d-flex flex-column">
+						<h1>Registro - Estudiantes</h1>
 
-				{{ form_start(form) }}
+						{{ form_start(form) }}
 
-				{{ form_rest(form) }}
+						<div class="row gx-2">
+							<div class="col">
+								{{ form_row(form.nombre)}}
+							</div>
+							<div class="col">
+								{{ form_row(form.apellido) }}
+							</div>
+						</div>
 
-				<button type="submit">Registrarse</button>
+						{{ form_row(form.dni) }}
 
-				{{ form_end(form) }}
+						{{ form_row(form.domicilio) }}
+						{{ form_row(form.telefono, {
+							'label': 'Teléfono'
+						}) }}
+						<div class="row gx-2">
+							<div id="anio-selector" class="col" data-controller='especialidad'>
+								{{ form_row(form.anio, {
+									'attr': {
+										'data-action': "change->especialidad#toggleElement"
+									}
+								}) }}
+							</div>
+							<div class="col">
+								{{ form_row(form.division) }}
+							</div>
+							<div class="col">
+								{{ form_row(form.turno) }}
+							</div>
+						</div>
+
+						<div id="especialidad-selector" data-especialidad-target="toggleElement" class="d-none">
+							{{ form_row(form.especialidad) }}
+						</div>
+
+						{{ form_row(form.usuario.email) }}
+
+						{{ form_row(form.usuario.plainPassword) }}
+
+						<button class="btn btn-primary" type="submit">Registrarse</button>
+
+						{{ form_end(form) }}
+					</div>
+				</div>
 			</div>
-		</section>
+		</div>
 	</div>
 {% endblock %}

@@ -1,60 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block stylesheets %}
-	<link rel="stylesheet" href="{{ asset('styles/index.css') }}">
-{% endblock %}
-
 {% block title %}Inicio
 {% endblock %}
 
 
 {% block body %}
-	<div class="container">
-		<div class="libreando-content">
-			<div class="libreando-main">
-				<div class="libreando-title">
-					<h2>Mar-Team presenta</h2>
-					<h1>Proyecto<br>Biblioteca</h1>
+	<div class="container-fluid bg-primary landing-panel">
+		<div class="container-lg bg-primary">
+			<div class="row align-items-center">
+				<div class="col-sm-4 pb-5">
+					<span>Mar-Team presenta</span>
+					<h1 style="font-weight: 600;">Libreando</h1>
+					<p class="h5">Descubre nuestra amplia colección de libros, desde clásicos y novelas hasta textos técnicos y especializados.</p>
 				</div>
-				<div class="libreando-text">
-					<p>Descubre nuestra amplia
-						<br>
-						colección de libros, desde
-						<br>
-						clásicos y novelas hasta
-						<br>
-						textos técnicos y
-						<br>
-						especializados.
-						<br>
-					</p>
+
+				<div class="col-sm-8">
+					<img class="img-fluid" src="{{ asset('images/index/ninos_grupo.png') }}" alt="Grupo de jovenes leyendo"/>
 				</div>
 			</div>
-			<div class="libreando-image">
-				<img src="{{ asset('images/index/ninos_grupo.png') }}">
-			</img>
 		</div>
 	</div>
-
-	<div class="libreando-desc">
-		<div class="desc-image">
-			<img src="{{ asset('images/index/ninos_grupo_2.png') }}">
-		</img>
+	<div class="container-fluid landing-panel">
+		<div class="container-lg">
+			<div class="row pt-4 align-items-center">
+				<div class="col-sm-8">
+					<img class="img-fluid" src="{{ asset('images/index/jovenes-grupo-2.png') }}"/>
+				</div>
+				<div class="col-sm-4 pt-sm-5">
+					<p class="h5">Navega por nuestra colección, explora las diferentes categorías y encuentra el libro perfecto para ti. Pídelo ahora en nuestra biblioteca y comienza tu viaje de lectura hoy mismo</p>
+				</div>
+			</div>
+		</div>
 	</div>
-	<div class="desc-text">
-		<p>Navega por nuestra colección,
-			<br>
-			explora las diferentes<br>
-			categorías y encuentra el<br>
-			libro perfecto para ti. Pídelo<br>
-			ahora en nuestra biblioteca y<br>
-			comienza tu viaje de lectura<br>
-			hoy mismo
-		</p>
-	</div>
-</div>
-
-<div class="books">
-	<h2>Todos los libros</h2>
-	<div class="books-slider"></div>
-</div></div>{% endblock %}
+{% endblock %}

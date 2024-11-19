@@ -1,14 +1,62 @@
 @font-face {
-  font-family: "DM Sans";
-  font-optical-sizing: auto;
-  src: url('./DM_Sans/DMSans-VariableFont_opsz,wght.ttf');
+  font-family: 'DM Sans';
   font-style: normal;
+  font-weight: 100;
+  src: url('./DM_Sans/static/DMSans-ExtraLight.ttf');
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 200;
+  src: url('./DM_Sans/static/DMSans-Light.ttf');
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: url('./DM_Sans/static/DMSans-Thin.ttf');
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./DM_Sans/static/DMSans-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 500;
+  src: url('./DM_Sans/static/DMSans-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: url('./DM_Sans/static/DMSans-SemiBold.ttf');
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url('./DM_Sans/static/DMSans-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 800;
+  src: url('./DM_Sans/static/DMSans-ExtraBold.ttf');
 }
 
 @font-face {
   font-family: "Playfair Display";
   font-optical-sizing: auto;
   src: url('./Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf');
-  font-style: normal;
 }
 

@@ -1,44 +1,28 @@
-{% extends 'base_no_navbar.html.twig' %}
-
-{% block stylesheets %}
-	<link rel="stylesheet" href="{{ asset('styles/login.css') }}">
-{% endblock %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Registrarse
 {% endblock %}
 
+{% block header %}{% endblock %}
+
 {% block body %}
-	<div class="container">
-		<a class="logo" href="{{path('app_index')}}">
-			<img src="{{asset('images/logo/logo-libreando.png')}}" alt="Logo">
-		</a>
-		<section class="side">
-			<div class="childrens">
-				<img src="{{ asset('images/login/niños_pila.png') }}" alt="Niños en columna">
+	<div class="container-fluid landing-panel">
+		<div class="container-lg align-items-stretch">
+			<div class="row">
+				<div class="col d-none d-lg-block d-md-none">
+					<img src="{{ asset('images/login/niños_pila.png') }}" alt="Niños en columna">
+				</div>
+
+				<div class="col d-flex align-items-center justify-content-center">
+					<div>
+						<h1>Deseo registrarme como:</h1>
+						<div>
+							<a class="btn btn-primary" href="{{ path('app_registro_estudiantes') }}">Estudiante</a>
+							<a class="btn btn-primary" href="{{ path('app_registro_profesores') }}">Profesor</a>
+						</div>
+					</div>
+				</div>
 			</div>
-		</section>
-
-		<section class="main">
-			<div class="loginbox">
-
-				<div class="user-login">
-					<h1>Deseo registrarme como:
-					</h1>
-				</div>
-
-				<div class="login-btn">
-					<button>
-						<a href="{{ url('app_registro_estudiantes') }}">Estudiante</a>
-					</button>
-				</div>
-
-				<div class="login-btn">
-					<button>
-						<a href="{{ url('app_registro_profesores') }}">Profesor</a>
-					</button>
-				</div>
-			</section>
 		</div>
-
-
-	{% endblock %}
+	</div>
+{% endblock %}

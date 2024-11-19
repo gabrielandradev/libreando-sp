@@ -5,7 +5,6 @@ namespace App\Form;
 use App\Entity\Especialidad;
 use App\Entity\Estudiante;
 use App\Entity\Turno;
-use App\Entity\Usuario;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\AbstractType;
@@ -13,12 +12,14 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
+use Symfony\Component\Form\Extension\Core\Type\TelType;
+
 class EstudianteFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('dni', NumberType::class , [
+            ->add('dni', NumberType::class, [
                 'label'    => 'DNI',
                 'html5'    => true,
                 'required' => true,
@@ -30,7 +31,13 @@ class EstudianteFormType extends AbstractType
             ->add('nombre')
             ->add('apellido')
             ->add('domicilio')
-            ->add('telefono')
+            ->add('telefono', TelType::class, [
+                'label' => 'Teléfono',
+                'attr' => [
+                    'placeholder' => '11-5555-1234',
+                    'pattern' => "[0-9]{2}-[0-9]{4}-[0-9]{4}"
+                ]
+            ])
             ->add('anio', ChoiceType::class, [
                 'label' => 'Año',
                 'choices'  => [
@@ -41,6 +48,7 @@ class EstudianteFormType extends AbstractType
                     '5to' => 5,
                     '6to' => 6,
                 ],
+                'data' => 1
             ])
             ->add('division')
             ->add('especialidad', EntityType::class, [

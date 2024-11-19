@@ -1,13 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin.html.twig' %}
 
 {% block title %}Crear nuevo libro
 {% endblock %}
 
-{% block stylesheets %}
-	<link rel="stylesheet" href="{{ asset('styles/book-form.css') }}">
-{% endblock %}
-
-{% block body %}
+{% block main %}
 	<h1>Nuevo libro</h1>
 
 	{{ include('crud/libro/_form.html.twig')}}

@@ -1,6 +1,7 @@
 import './bootstrap.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-import './styles/reset.css';
-import './styles/table.css';
-import './styles/navbar.css';
+import 'bootstrap';
+
 import './fonts/fonts.css';
+import './styles/app.css';

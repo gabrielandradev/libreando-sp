@@ -1,0 +1,47 @@
+:root {
+    --bs-primary-rgb: 155, 179, 232;
+    --bs-secondary-rgb: 11, 23, 50;
+    --bs-font-sans-serif: 'DM Sans', Arial, Helvetica, sans-serif;
+}
+
+.search-bar {
+    max-width: 550px;
+}
+
+.icon-search {
+    fill: black;
+}
+
+.bd-navbar .navbar-nav .nav-link {
+    padding-left: .5rem;
+    padding-right: .5rem;
+    font-weight: 500;
+}
+
+.form-group {
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+}
+
+.landing-panel {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+.sidebar-icon {
+    fill: black;
+    height: 30px;
+    width: 30px;
+}
+
+.btn-toggle-nav a {
+    display: inline-flex;
+    padding: .1875rem .5rem;
+    margin-top: .125rem;
+    margin-left: 1.25rem;
+    text-decoration: none;
+}
+
+.sidebar-btn:hover {
+    background-color: rgb(245, 245, 247);
+}
