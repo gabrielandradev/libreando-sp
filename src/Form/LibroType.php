@@ -13,7 +13,11 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Positive;
 
 class LibroType extends AbstractType
 {
@@ -41,17 +45,51 @@ class LibroType extends AbstractType
                 ],
                 'choice_label' => 'nombre'
             ])
-            ->add('isbn')
-            ->add('editorial')
-            ->add('numero_edicion')
-            ->add('lugar_edicion')
-            ->add('idioma')
+            ->add('isbn', NumberType::class, [
+                'label' => 'Division',
+                'constrains' => [
+                    new NotBlank(message: 'Ingrese el ISBN')
+                ]
+            ])
+            ->add('editorial', TextType::class, [
+                'required' => true,
+                'constraints' => [
+                    new NotBlank(message: 'Ingrese la editorial'),
+                ]
+            ])
+            ->add('numero_edicion', NumberType::class, [
+                'label' => 'Division',
+                'constrains' => [
+                    new NotBlank(message: 'Ingrese el N° de edición')
+                ]
+            ])
+            ->add('lugar_edicion', TextType::class, [
+                'required' => true,
+                'constraints' => [
+                    new NotBlank(message: 'Ingrese el lugar de edición'),
+                ]
+            ])
+            ->add('idioma', TextType::class, [
+                'required' => true,
+                'constraints' => [
+                    new NotBlank(message: 'Ingrese el idioma del libro'),
+                ]
+            ])
             ->add('notas')
-            ->add('numero_paginas')
+            ->add('numero_paginas', NumberType::class, [
+                'label' => 'Division',
+                'constrains' => [
+                    new NotBlank(message: 'Ingrese el N° de edición'),
+                    new Positive()
+                ]
+            ])
             ->add('publicacion_edicion', DateType::class, [
                 'widget' => 'single_text',
-                'input'  => 'datetime',
+                'input' => 'datetime',
                 'by_reference' => true,
+                'constraints' => [
+                    new NotBlank(message: 'Ingrese la cantidad de ediciones'),
+                ]
             ])
             ->add('descriptor_primario', EntityType::class, [
                 'class' => Descriptor::class,
@@ -60,6 +98,9 @@ class LibroType extends AbstractType
                 'attr' => [
                     'data-controller' => 'custom-autocomplete',
                     'data-custom-autocomplete-url-value' => $this->router->generate('app_descriptor_crud_new'),
+                ],
+                'constraints' => [
+                    new NotBlank(message: 'Descriptor primario necesario'),
                 ]
             ])
             ->add('descriptores_secundarios', EntityType::class, [
@@ -75,7 +116,10 @@ class LibroType extends AbstractType
                     'data-controller' => 'custom-autocomplete',
                     'data-custom-autocomplete-url-value' => $this->router->generate('app_descriptor_crud_new'),
                 ],
-                'choice_label' => 'nombre'
+                'choice_label' => 'nombre',
+                'constraints' => [
+                    new NotBlank(message: 'Descriptor secundario necesario'),
+                ]
             ])
             ->add('numero_cdd', EntityType::class, [
                 'class' => ClasificacionDecimalDewey::class,
@@ -86,16 +130,19 @@ class LibroType extends AbstractType
                 'choice_label' => function ($cdd) {
                     return $cdd->getNumeroCdd() . ' - ' . $cdd->getDescripcion();
                 },
+                'constraints' => [
+                    new NotBlank(message: 'CDD necesesario'),
+                ]
             ])
             ->add('guardar', SubmitType::class, [
-                'attr' => ['class' => 'save'],
+                'attr' => ['class' => 'save']
             ])
             ->add('guardarCrearOtro', SubmitType::class, [
                 'attr' => [
                     'class' => 'save'
-                ],
+                ]
             ])
-            ;
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
