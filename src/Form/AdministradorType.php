@@ -28,22 +28,13 @@ class AdministradorType extends AbstractType
             ]
         ])
         ->add('nombre', TextType::class, [
-            'required' => true,
-            'constraints' => [
-                new NotBlank(message: 'Ingrese un nombre'),
-            ]
+            'required' => true
         ])
         ->add('apellido', TextType::class, [
-            'required' => true,
-            'constraints' => [
-                new NotBlank(message: 'Ingrese un nombre'),
-            ]
+            'required' => true
         ])
         ->add('domicilio', TextType::class, [
-            'required' => true,
-            'constraints' => [
-                new NotBlank(message: 'Ingrese un nombre'),
-            ]
+            'required' => true
         ])
         ->add('telefono', TelType::class, [
             'label' => 'Teléfono',
@@ -53,10 +44,7 @@ class AdministradorType extends AbstractType
             ]
         ])
             ->add('funcion', TextType::class, [
-                'required' => true,
-                'constraints' => [
-                    new NotBlank(message: 'Ingrese una función'),
-                ]
+                'required' => true
             ])
             ->add('usuario', RegistrationFormType::class);
         ;

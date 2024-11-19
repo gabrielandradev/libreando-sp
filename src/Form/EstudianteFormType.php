@@ -25,28 +25,20 @@ class EstudianteFormType extends AbstractType
                 'label'    => 'DNI',
                 'html5'    => true,
                 'required' => true,
+                'help' => 'Sin puntos ni espacios', 
                 'attr' => [
                     'min' => 0,
                     'max' => 99999999
                 ]
             ])
             ->add('nombre', TextType::class, [
-                'required' => true,
-                'constraints' => [
-                    new NotBlank(message: 'Ingrese un nombre'),
-                ]
+                'required' => true
             ])
             ->add('apellido', TextType::class, [
-                'required' => true,
-                'constraints' => [
-                    new NotBlank(message: 'Ingrese un nombre'),
-                ]
+                'required' => true
             ])
             ->add('domicilio', TextType::class, [
-                'required' => true,
-                'constraints' => [
-                    new NotBlank(message: 'Ingrese un nombre'),
-                ]
+                'required' => true
             ])
             ->add('telefono', TelType::class, [
                 'label' => 'Teléfono',
