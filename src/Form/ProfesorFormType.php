@@ -7,10 +7,12 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-
+    
 class ProfesorFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -26,9 +28,24 @@ class ProfesorFormType extends AbstractType
                     'maxLength' => 8
                 ]
             ])
-            ->add('nombre')
-            ->add('apellido')
-            ->add('domicilio')
+            ->add('nombre', TextType::class, [
+                'required' => true,
+                'constraints' => [
+                    new NotBlank(message: 'Ingrese un nombre'),
+                ]
+            ])
+            ->add('apellido', TextType::class, [
+                'required' => true,
+                'constraints' => [
+                    new NotBlank(message: 'Ingrese un nombre'),
+                ]
+            ])
+            ->add('domicilio', TextType::class, [
+                'required' => true,
+                'constraints' => [
+                    new NotBlank(message: 'Ingrese un nombre'),
+                ]
+            ])
             ->add('telefono', TelType::class, [
                 'label' => 'Teléfono',
                 'attr' => [

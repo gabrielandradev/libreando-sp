@@ -11,7 +11,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Positive;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 
 class EstudianteFormType extends AbstractType
@@ -28,9 +30,24 @@ class EstudianteFormType extends AbstractType
                     'max' => 99999999
                 ]
             ])
-            ->add('nombre')
-            ->add('apellido')
-            ->add('domicilio')
+            ->add('nombre', TextType::class, [
+                'required' => true,
+                'constraints' => [
+                    new NotBlank(message: 'Ingrese un nombre'),
+                ]
+            ])
+            ->add('apellido', TextType::class, [
+                'required' => true,
+                'constraints' => [
+                    new NotBlank(message: 'Ingrese un nombre'),
+                ]
+            ])
+            ->add('domicilio', TextType::class, [
+                'required' => true,
+                'constraints' => [
+                    new NotBlank(message: 'Ingrese un nombre'),
+                ]
+            ])
             ->add('telefono', TelType::class, [
                 'label' => 'Teléfono',
                 'attr' => [
@@ -50,7 +67,13 @@ class EstudianteFormType extends AbstractType
                 ],
                 'data' => 1
             ])
-            ->add('division')
+            ->add('division', NumberType::class, [
+                'label' => 'División',
+                'constraints' => [
+                    new NotBlank(),
+                    new Positive(),
+                ]
+            ])
             ->add('especialidad', EntityType::class, [
                 'class' => Especialidad::class,
                 'choice_label' => 'nombre',
