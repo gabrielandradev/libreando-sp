@@ -21,10 +21,6 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]
-    #[Assert\NotBlank]
-    #[Assert\Email(
-        message: 'El email {{ value }} no es una dirección de email válida.',
-    )]
     private ?string $email = null;
 
     /**
@@ -37,7 +33,6 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
-    #[Assert\NotBlank]
     private ?string $password = null;
 
     #[ORM\OneToOne(mappedBy: 'usuario', cascade: ['persist', 'remove'], orphanRemoval: true)]
@@ -286,5 +281,31 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+
+    public function isProfesor(): bool
+    {
+        return in_array('ROLE_TEACHER', $this->getRoles());
+    }
+
+    public function isEstudiante(): bool
+    {
+        return in_array('ROLE_STUDENT', $this->getRoles());
+    }
+
+    public function isAdmin(): bool
+    {
+        return in_array('ROLE_ADMIN', $this->getRoles());
+    }
+
+    public function getUserInformation()
+    {
+        if ($this->isEstudiante()) {
+            return $this->estudiante;
+        } else if ($this->isProfesor()) {
+            return $this->profesor;
+        } else if ($this->isAdmin()) {
+            return $this->administrador;
+        }
     }
 }
