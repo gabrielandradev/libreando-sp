@@ -46,50 +46,28 @@ class LibroType extends AbstractType
                 'choice_label' => 'nombre'
             ])
             ->add('isbn', NumberType::class, [
-                'label' => 'Division',
-                'constrains' => [
-                    new NotBlank(message: 'Ingrese el ISBN')
-                ]
+                'label' => 'Division'
             ])
             ->add('editorial', TextType::class, [
-                'required' => true,
-                'constraints' => [
-                    new NotBlank(message: 'Ingrese la editorial'),
-                ]
+                'required' => true
             ])
             ->add('numero_edicion', NumberType::class, [
-                'label' => 'Division',
-                'constrains' => [
-                    new NotBlank(message: 'Ingrese el N° de edición')
-                ]
+                'label' => 'Division'
             ])
             ->add('lugar_edicion', TextType::class, [
-                'required' => true,
-                'constraints' => [
-                    new NotBlank(message: 'Ingrese el lugar de edición'),
-                ]
+                'required' => true
             ])
             ->add('idioma', TextType::class, [
-                'required' => true,
-                'constraints' => [
-                    new NotBlank(message: 'Ingrese el idioma del libro'),
-                ]
+                'required' => true
             ])
             ->add('notas')
             ->add('numero_paginas', NumberType::class, [
-                'label' => 'Division',
-                'constrains' => [
-                    new NotBlank(message: 'Ingrese el N° de edición'),
-                    new Positive()
-                ]
+                'label' => 'Division'
             ])
             ->add('publicacion_edicion', DateType::class, [
                 'widget' => 'single_text',
                 'input' => 'datetime',
-                'by_reference' => true,
-                'constraints' => [
-                    new NotBlank(message: 'Ingrese la cantidad de ediciones'),
-                ]
+                'by_reference' => true
             ])
             ->add('descriptor_primario', EntityType::class, [
                 'class' => Descriptor::class,
@@ -98,9 +76,6 @@ class LibroType extends AbstractType
                 'attr' => [
                     'data-controller' => 'custom-autocomplete',
                     'data-custom-autocomplete-url-value' => $this->router->generate('app_descriptor_crud_new'),
-                ],
-                'constraints' => [
-                    new NotBlank(message: 'Descriptor primario necesario'),
                 ]
             ])
             ->add('descriptores_secundarios', EntityType::class, [
@@ -116,10 +91,7 @@ class LibroType extends AbstractType
                     'data-controller' => 'custom-autocomplete',
                     'data-custom-autocomplete-url-value' => $this->router->generate('app_descriptor_crud_new'),
                 ],
-                'choice_label' => 'nombre',
-                'constraints' => [
-                    new NotBlank(message: 'Descriptor secundario necesario'),
-                ]
+                'choice_label' => 'nombre'
             ])
             ->add('numero_cdd', EntityType::class, [
                 'class' => ClasificacionDecimalDewey::class,
@@ -129,10 +101,7 @@ class LibroType extends AbstractType
                 },
                 'choice_label' => function ($cdd) {
                     return $cdd->getNumeroCdd() . ' - ' . $cdd->getDescripcion();
-                },
-                'constraints' => [
-                    new NotBlank(message: 'CDD necesesario'),
-                ]
+                }
             ])
             ->add('guardar', SubmitType::class, [
                 'attr' => ['class' => 'save']
