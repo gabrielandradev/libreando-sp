@@ -1,0 +1,11 @@
+<div>
+    {{ form_start(form) }}
+        {{ form_row(form.prestatario) }}
+        {{ form_row(form.libro) }}
+        {% if form.copia_libro is defined %}
+            {{ form_row(form.copia_libro) }}
+        {% endif %}
+        {{ form_row(form.fecha_devolucion) }}
+        {{ form_row(form.estado_prestamo) }}
+    {{ form_end(form) }}
+</div>

@@ -1,14 +1,14 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}Libros
+{% block title %}Gestionar libros
 {% endblock %}
 
 {% block main %}
-	<h1>Libros</h1>
+	<h1>Gestionar libros</h1>
 		<table class="table table-sm table-hover">
 			<thead>
 				<tr>
-					<th>Id</th>
+					<th>Identificador</th>
 					<th>Título</th>
 					<th>ISBN</th>
 					<th>Editorial</th>
@@ -52,5 +52,5 @@
 			</tbody>
 		</table>
 
-	<a href="{{ path('app_libro_new') }}">Create new</a>
+	<a href="{{ path('app_libro_new') }}">Registrar nuevo libro</a>
 {% endblock %}
