@@ -20,6 +20,7 @@ final class Version20241003033705 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
+        $this->addSql('CREATE TABLE administrador (id INT AUTO_INCREMENT NOT NULL, usuario_id INT NOT NULL, dni VARCHAR(8) NOT NULL, nombre VARCHAR(255) NOT NULL, apellido VARCHAR(255) NOT NULL, telefono VARCHAR(20) NOT NULL, funcion VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_44F9A521DB38439E (usuario_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE disponibilidad_copia_libro (id INT AUTO_INCREMENT NOT NULL, estado VARCHAR(50) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE especialidad (id INT AUTO_INCREMENT NOT NULL, nombre VARCHAR(50) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE estudiante (id INT AUTO_INCREMENT NOT NULL, especialidad_id INT NOT NULL, turno_id INT NOT NULL, usuario_id INT NOT NULL, dni VARCHAR(8) NOT NULL, nombre VARCHAR(255) NOT NULL, apellido VARCHAR(255) NOT NULL, domicilio VARCHAR(255) NOT NULL, telefono VARCHAR(40) NOT NULL, INDEX IDX_3B3F3FAD16A490EC (especialidad_id), INDEX IDX_3B3F3FAD69C5211E (turno_id), UNIQUE INDEX UNIQ_3B3F3FADDB38439E (usuario_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
