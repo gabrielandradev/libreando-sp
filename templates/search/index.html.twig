@@ -15,10 +15,6 @@
 				<h2>
 					<a href="{{ path('app_libro_show', { id: libro.id}) }}">{{ libro.titulo }}</a>
 				</h2>
-				<p>
-					{{ libro.publicacionEdicion ? libro.publicacionEdicion|date('Y') : '' }}</p>
-				<p>ISBN:
-					{{ libro.isbn }}</p>
 			</div>
 		{% else %}
 			<h2>No encontramos resultados para tu búsqueda</h2>

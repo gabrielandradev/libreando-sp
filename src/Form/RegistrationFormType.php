@@ -24,9 +24,9 @@ class RegistrationFormType extends AbstractType
                 'required' => true,
                 'constraints' => [
                     new Email([
-                        'message' => 'El mail "{{ value }}" no es valido'
+                        'message' => 'El email "{{ value }}" no es válido'
                     ])
-                    ],
+                ],
             ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
@@ -37,11 +37,11 @@ class RegistrationFormType extends AbstractType
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Por favor, ingresar una contraseña',
+                        'message' => 'Por favor, ingresa una contraseña',
                     ]),
                     new Length([
                         'min' => 8,
-                        'minMessage' => 'La contraseña debe ser de al menos {{ limit }} caracteres',
+                        'minMessage' => 'La contraseña debe contener al menos {{ limit }} caracteres',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),

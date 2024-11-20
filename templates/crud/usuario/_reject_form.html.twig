@@ -1,4 +1,4 @@
 <form  method="post" action="{{ path('app_usuario_rechazar', {'id': usuario.id}) }}" onsubmit="return confirm('¿Estas seguro quieres rechazar al usuario?');">
     <input type="hidden" name="_token" value="{{ csrf_token('reject' ~ usuario.id) }}">
-    <button>Eliminar</button>
+    <button class="btn btn-danger me-2">Eliminar</button>
 </form>
