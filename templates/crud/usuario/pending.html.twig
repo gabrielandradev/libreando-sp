@@ -1,19 +1,53 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}Usuarios Pendientes{% endblock %}
+{% block title %}Solicitudes de cuenta
+{% endblock %}
 
 {% block main %}
-    <h1>Usuarios Pendientes</h1>
+	<h1>Solicitudes de cuenta</h1>
 
-    {% for usuario in usuarios %}
-        <p>{{ usuario.id }}</p>
-        <p>{{ usuario.email }}</p>
-        <p>{{ usuario.roles ? usuario.roles|json_encode : ''  }}</p>
-        
-        {{ include('crud/usuario/_accept_form.html.twig') }}
-        {{ include('crud/usuario/_reject_form.html.twig') }}
-    {% else %}
-        <p>No hay usuarios pendientes</p>
-    {% endfor %}
+	<div class="container-fluid">
+		<div class="row">
+			{% for usuario in usuarios %}
+				<div class="col">
+					<div class="card w-50">
+						{% if usuario.isEstudiante %}
+							<div class="card-header">
+								Estudiante
+							</div>
 
-{% endblock %}
+							<div class="card-body">
+								<h5 class="card-title">{{ usuario.estudiante.nombre }}
+									{{ usuario.estudiante.apellido }}</h5>
+								<h6 class="card-subtitle mb-2 text-body-secondary">{{ usuario.email }}</h6>
+							</div>
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item">
+									<strong>DNI:</strong>
+									{{ usuario.estudiante.dni}}</li>
+								<li class="list-group-item">
+									<strong>Domicilio:</strong>
+									{{ usuario.estudiante.domicilio}}</li>
+								<li class="list-group-item">
+									<strong>Teléfono:</strong>
+									{{ usuario.estudiante.telefono}}</li>
+								<li class="list-group-item">
+									<strong>Curso:</strong>
+									{{ usuario.estudiante.anio }}°
+									{{ usuario.estudiante.division }}ª
+									{{ usuario.estudiante.especialidad.nombre }}</li>
+								<li class="list-group-item"><strong>Turno:</strong> {{usuario.estudiante.turno.nombre}}</li>
+							</ul>
+							<div class="card-footer d-flex justify-content-end">
+								{{ include('crud/usuario/_reject_form.html.twig') }}
+								{{ include('crud/usuario/_accept_form.html.twig') }}
+							</div>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		{% else %}
+			<p>No hay usuarios pendientes</p>
+		{% endfor %}
+	</div>
+</div>{% endblock %}

@@ -1,77 +1,95 @@
 {% extends 'admin.html.twig' %}
 
 {% block main %}
-	<h1>Panel de control</h1>
+	<h4>Panel de control</h4>
 	<div class="container-lg p-0">
 		<div class="row">
-			<div class="d-flex col-xxl-3 col-sm-6">
-				<div class="flex-fill card">
+			<div class="d-flex col-xxl-3 col-sm-4">
+				<div class="flex-fill card border-light shadow rounded-md">
 					<div class="py-4 card-body">
 						<div class="d-flex align-items-start">
 							<div class="flex-grow-1">
-								<h5 class="card-title">{{ inactiveUsersCount }}</h5>
-								<p class="card-text">Solicitudes de cuenta pendientes de revisión</p>
+								<h6 class="card-title">Solicitudes de cuenta</h6>
+								<h3 class="card-title">{{ inactiveUsersCount|number_format }}</h3>
 							</div>
-							<a href="{{path('app_usuarios_pendientes')}}" class="btn btn-primary rounded-circle p-1">
+							<a href="{{path('app_usuarios_pendientes')}}" class="btn btn-warning rounded-circle p-1">
 								<span>
-									<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 -960 960 960" width="24px" fill="#f3f3f3"><path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"/></svg>
+									<svg class="dashboard-card-icon" xmlns="http://www.w3.org/2000/svg" viewbox="0 -960 960 960"><path d="M720-240q25 0 42.5-17.5T780-300q0-25-17.5-42.5T720-360q-25 0-42.5 17.5T660-300q0 25 17.5 42.5T720-240Zm0 120q32 0 57-14t42-39q-20-16-45.5-23.5T720-204q-28 0-53.5 7.5T621-173q17 25 42 39t57 14Zm-520 0q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v268q-19-9-39-15.5t-41-9.5v-243H200v560h242q3 22 9.5 42t15.5 38H200Zm0-120v40-560 243-3 280Zm80-40h163q3-21 9.5-41t14.5-39H280v80Zm0-160h244q32-30 71.5-50t84.5-27v-3H280v80Zm0-160h400v-80H280v80ZM720-40q-83 0-141.5-58.5T520-240q0-83 58.5-141.5T720-440q83 0 141.5 58.5T920-240q0 83-58.5 141.5T720-40Z"/></svg>
 								</span>
 							</a>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="d-flex col-xxl-3 col-sm-6">
-				<div class="flex-fill card">
+			<div class="d-flex col-xxl-3 col-sm-4">
+				<div class="flex-fill card border-light shadow rounded-md">
 					<div class="py-4 card-body">
 						<div class="d-flex align-items-start">
 							<div class="flex-grow-1">
-								<h5 class="card-title">{{ inactiveUsersCount }}</h5>
-								<p class="card-text">Solicitudes de cuenta pendientes de revisión</p>
+								<h6 class="card-title">Cuentas activas</h6>
+								<h3 class="card-title">{{ inactiveUsersCount|number_format }}</h3>
 							</div>
-							<a href="{{path('app_usuarios_pendientes')}}" class="btn btn-primary rounded-circle p-1">
+							<a href="{{path('app_usuario_index')}}" class="btn btn-success rounded-circle p-1">
 								<span>
-									<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 -960 960 960" width="24px" fill="#f3f3f3"><path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"/></svg>
+									<svg class="dashboard-card-icon" xmlns="http://www.w3.org/2000/svg" viewbox="0 -960 960 960"><path d="M440-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47Zm0-80q33 0 56.5-23.5T520-640q0-33-23.5-56.5T440-720q-33 0-56.5 23.5T360-640q0 33 23.5 56.5T440-560ZM884-20 756-148q-21 12-45 20t-51 8q-75 0-127.5-52.5T480-300q0-75 52.5-127.5T660-480q75 0 127.5 52.5T840-300q0 27-8 51t-20 45L940-76l-56 56ZM660-200q42 0 71-29t29-71q0-42-29-71t-71-29q-42 0-71 29t-29 71q0 42 29 71t71 29Zm-540 40v-111q0-34 17-63t47-44q51-26 115-44t142-18q-12 18-20.5 38.5T407-359q-60 5-107 20.5T221-306q-10 5-15.5 14.5T200-271v31h207q5 22 13.5 42t20.5 38H120Zm320-480Zm-33 400Z"/></svg>
 								</span>
 							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="d-flex col-xxl-3 col-sm-6">
-				<div class="flex-fill card">
-					<div class="py-4 card-body">
-						<div class="d-flex align-items-start">
-							<div class="flex-grow-1">
-								<h5 class="card-title">{{ inactiveUsersCount }}</h5>
-								<p class="card-text">Solicitudes de cuenta pendientes de revisión</p>
-							</div>
-							<a href="{{path('app_usuarios_pendientes')}}" class="btn btn-primary rounded-circle p-1">
-								<span>
-									<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 -960 960 960" width="24px" fill="#f3f3f3"><path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"/></svg>
-								</span>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="d-flex col-xxl-3 col-sm-6">
-				<div class="flex-fill card">
-					<div class="py-4 card-body">
-						<div class="d-flex align-items-start">
-							<div class="flex-grow-1">
-								<h5 class="card-title">{{ inactiveUsersCount }}</h5>
-								<p class="card-text">Solicitudes de cuenta pendientes de revisión</p>
-							</div>
-							<a href="{{path('app_usuarios_pendientes')}}" class="btn btn-primary rounded-circle p-1">
-								<span>
-									<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 -960 960 960" width="24px" fill="#f3f3f3"><path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"/></svg>
-								</span>
-							</a>
-						</div>
+						</a>
 					</div>
 				</div>
 			</div>
 		</div>
+		<div class="d-flex col-xxl-3 col-sm-4">
+			<div class="flex-fill card border-light shadow rounded-md">
+				<div class="py-4 card-body">
+					<div class="d-flex align-items-start">
+						<div class="flex-grow-1">
+							<h6 class="card-title">Libros registrados</h6>
+							<h3 class="card-title">{{2172|number_format}}</h3>
+						</div>
+						<a href="{{path('app_libro_index')}}" class="btn btn-secondary rounded-circle p-1">
+							<span>
+								<svg class="dashboard-card-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 -960 960 960" width="24px" fill="#434343"><path d="M400-400h160v-80H400v80Zm0-120h320v-80H400v80Zm0-120h320v-80H400v80Zm-80 400q-33 0-56.5-23.5T240-320v-480q0-33 23.5-56.5T320-880h480q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H320Zm0-80h480v-480H320v480ZM160-80q-33 0-56.5-23.5T80-160v-560h80v560h560v80H160Zm160-720v480-480Z"/></svg>
+							</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="d-flex col-xxl-3 col-sm-8">
+			<div class="flex-fill card border-light shadow rounded-md">
+				<div class="py-4 card-body">
+					<div class="d-flex align-items-start">
+						<div class="flex-grow-1">
+							<h6 class="card-title">Préstamos activos</h6>
+							<h3 class="card-title">{{ inactiveUsersCount }}</h3>
+						</div>
+						<a href="{{path('app_prestamo_index')}}" class="btn btn-primary rounded-circle p-1">
+							<span>
+								<svg class="dashboard-card-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 -960 960 960" width="24px" fill="#434343"><path d="M320-320h480v-480h-80v280l-100-60-100 60v-280H320v480Zm0 80q-33 0-56.5-23.5T240-320v-480q0-33 23.5-56.5T320-880h480q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H320ZM160-80q-33 0-56.5-23.5T80-160v-560h80v560h560v80H160Zm360-720h200-200Zm-200 0h480-480Z"/></svg>
+							</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="d-flex col-xxl-3 col-sm-4">
+			<div class="flex-fill card border-light shadow rounded-md">
+				<div class="py-4 card-body">
+					<div class="d-flex align-items-start">
+						<div class="flex-grow-1">
+							<h6 class="card-title">Reservas activas</h6>
+							<h3 class="card-title">{{ inactiveUsersCount }}</h3>
+						</div>
+						<a href="{{path('app_reserva_index')}}" class="btn btn-info rounded-circle p-1">
+							<span>
+								<svg class="dashboard-card-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 -960 960 960" width="24px" fill="#434343"><path d="M160-80v-560q0-33 23.5-56.5T240-720h320q33 0 56.5 23.5T640-640v560L400-200 160-80Zm80-121 160-86 160 86v-439H240v439Zm480-39v-560H280v-80h440q33 0 56.5 23.5T800-800v560h-80ZM240-640h320-320Z"/></svg>
+							</span>
+						</a>
+					</a>
+				</div>
+			</div>
+		</div>
 	</div>
-{% endblock %}
+
+</div>{% endblock %}

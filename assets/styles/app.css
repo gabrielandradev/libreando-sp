@@ -54,3 +54,13 @@
 .card {
     margin-bottom: 1.25rem;
 }
+
+.rounded-md {
+    border-radius: 1rem;
+}
+
+.dashboard-card-icon {
+    height: 25px;
+    width: 25px;
+    fill: rgba(var(--bs-light-rgb),var(--bs-bg-opacity)) !important;
+}

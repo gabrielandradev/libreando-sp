@@ -13,7 +13,11 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Positive;
 
 class LibroType extends AbstractType
 {
@@ -41,17 +45,29 @@ class LibroType extends AbstractType
                 ],
                 'choice_label' => 'nombre'
             ])
-            ->add('isbn')
-            ->add('editorial')
-            ->add('numero_edicion')
-            ->add('lugar_edicion')
-            ->add('idioma')
+            ->add('isbn', NumberType::class, [
+                'label' => 'Division'
+            ])
+            ->add('editorial', TextType::class, [
+                'required' => true
+            ])
+            ->add('numero_edicion', NumberType::class, [
+                'label' => 'Division'
+            ])
+            ->add('lugar_edicion', TextType::class, [
+                'required' => true
+            ])
+            ->add('idioma', TextType::class, [
+                'required' => true
+            ])
             ->add('notas')
-            ->add('numero_paginas')
+            ->add('numero_paginas', NumberType::class, [
+                'label' => 'Division'
+            ])
             ->add('publicacion_edicion', DateType::class, [
                 'widget' => 'single_text',
-                'input'  => 'datetime',
-                'by_reference' => true,
+                'input' => 'datetime',
+                'by_reference' => true
             ])
             ->add('descriptor_primario', EntityType::class, [
                 'class' => Descriptor::class,
@@ -85,17 +101,17 @@ class LibroType extends AbstractType
                 },
                 'choice_label' => function ($cdd) {
                     return $cdd->getNumeroCdd() . ' - ' . $cdd->getDescripcion();
-                },
+                }
             ])
             ->add('guardar', SubmitType::class, [
-                'attr' => ['class' => 'save'],
+                'attr' => ['class' => 'save']
             ])
             ->add('guardarCrearOtro', SubmitType::class, [
                 'attr' => [
                     'class' => 'save'
-                ],
+                ]
             ])
-            ;
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
